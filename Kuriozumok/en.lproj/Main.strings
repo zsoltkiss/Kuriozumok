@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "29,29"; ObjectID = "BC5-uk-TWU"; */
+"BC5-uk-TWU.text" = "29,29";
+
+/* Class = "UILabel"; text = "Categories"; ObjectID = "WKA-W9-wr2"; */
+"WKA-W9-wr2.text" = "Categories";
+
+/* Class = "UISegmentedControl"; kBR-AH-kmu.segmentTitles[0] = "1 km"; ObjectID = "kBR-AH-kmu"; */
+"kBR-AH-kmu.segmentTitles[0]" = "1 km";
+
+/* Class = "UISegmentedControl"; kBR-AH-kmu.segmentTitles[1] = "3 km"; ObjectID = "kBR-AH-kmu"; */
+"kBR-AH-kmu.segmentTitles[1]" = "3 km";
+
+/* Class = "UISegmentedControl"; kBR-AH-kmu.segmentTitles[2] = "5 km"; ObjectID = "kBR-AH-kmu"; */
+"kBR-AH-kmu.segmentTitles[2]" = "5 km";
+
+/* Class = "UINavigationItem"; title = "Search"; ObjectID = "sA0-mh-DZi"; */
+"sA0-mh-DZi.title" = "Search";
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "vNW-GU-aaX"; */
+"vNW-GU-aaX.normalTitle" = "Search";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "yTO-mi-LRG"; */
+"yTO-mi-LRG.text" = "Location";

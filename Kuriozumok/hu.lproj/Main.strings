@@ -1,0 +1,153 @@
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "1l4-Rp-fRr"; */
+"1l4-Rp-fRr.text" = "Név";
+
+/* Class = "UILabel"; text = "Web:"; ObjectID = "2Q6-gm-Z6H"; */
+"2Q6-gm-Z6H.text" = "Web:";
+
+/* Class = "UILabel"; text = "25 km"; ObjectID = "4Of-aC-3AR"; */
+"4Of-aC-3AR.text" = "25 km";
+
+/* Class = "UILabel"; text = "Categories to search through"; ObjectID = "55n-rQ-Rtf"; */
+"55n-rQ-Rtf.text" = "Kategóriák";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "6Zq-iT-PKj"; */
+"6Zq-iT-PKj.text" = "Leírás";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "6nC-6s-pUm"; */
+"6nC-6s-pUm.normalTitle" = "Mégse";
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "7Ag-Gm-LGo"; */
+"7Ag-Gm-LGo.text" = "Email:";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "7Bk-FM-JSv"; */
+"7Bk-FM-JSv.text" = "Név";
+
+/* Class = "UINavigationItem"; title = "Results"; ObjectID = "AgD-1d-ZrD"; */
+"AgD-1d-ZrD.title" = "Találatok";
+
+/* Class = "UILabel"; text = "Unknown"; ObjectID = "BC5-uk-TWU"; */
+"BC5-uk-TWU.text" = "Ismeretlen";
+
+/* Class = "UILabel"; text = "some phone number..."; ObjectID = "CAq-MP-c3Z"; */
+"CAq-MP-c3Z.text" = "vlmilyen tel. szám";
+
+/* Class = "UIButton"; normalTitle = "Send this proposal"; ObjectID = "CIf-r1-Qea"; */
+"CIf-r1-Qea.normalTitle" = "Javaslom kuriózumnak";
+
+/* Class = "UILabel"; text = "Name of curioso"; ObjectID = "CP8-su-1Rn"; */
+"CP8-su-1Rn.text" = "A kuriózum neve";
+
+/* Class = "UILabel"; text = "Address:"; ObjectID = "FOI-kF-ilH"; */
+"FOI-kF-ilH.text" = "Cím:";
+
+/* Class = "UILabel"; text = "some web page..."; ObjectID = "H2c-t0-9oz"; */
+"H2c-t0-9oz.text" = "vlmilyen weboldal...";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "K9F-m4-OLp"; */
+"K9F-m4-OLp.normalTitle" = "Küldés";
+
+/* Class = "UILabel"; text = "some cell phone number..."; ObjectID = "LLP-zW-vfE"; */
+"LLP-zW-vfE.text" = "vlmilyen mobilszám...";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "M9i-wx-IBz"; */
+"M9i-wx-IBz.text" = "Kategória";
+
+/* Class = "UILabel"; text = "Cellular:"; ObjectID = "PDE-52-XMd"; */
+"PDE-52-XMd.text" = "Mobil:";
+
+/* Class = "UILabel"; text = "Some address from reverse geocoding"; ObjectID = "PSx-Cj-3Tf"; */
+"PSx-Cj-3Tf.text" = "Megállapított cím";
+
+/* Class = "UILabel"; text = "Phone:"; ObjectID = "Pr0-Lm-3jn"; */
+"Pr0-Lm-3jn.text" = "Telefon:";
+
+/* Class = "UILabel"; text = "Do you like this curioso?"; ObjectID = "R0U-4A-jue"; */
+"R0U-4A-jue.text" = "Tetszik neked ez a kuriózum?";
+
+/* Class = "UINavigationItem"; title = "Details"; ObjectID = "R2b-ng-wzE"; */
+"R2b-ng-wzE.title" = "Részletek";
+
+/* Class = "UITextField"; placeholder = "Name of this place or curio"; ObjectID = "R8q-fq-2z3"; */
+"R8q-fq-2z3.placeholder" = "Írd be a hely/kuriózum nevét";
+
+/* Class = "UILabel"; text = "some address..."; ObjectID = "TtK-vC-S19"; */
+"TtK-vC-S19.text" = "vlmilyen cím...";
+
+/* Class = "UILabel"; text = "Phone"; ObjectID = "UvJ-Mr-nZp"; */
+"UvJ-Mr-nZp.text" = "Telefon";
+
+/* Class = "UILabel"; text = "some email..."; ObjectID = "Xh5-5W-iiE"; */
+"Xh5-5W-iiE.text" = "vlmilyen email cím...";
+
+/* Class = "UINavigationItem"; title = "Propose a curio"; ObjectID = "YWK-P3-X0F"; */
+"YWK-P3-X0F.title" = "Javasolj egy kuriózumot";
+
+/* Class = "UISegmentedControl"; b8l-Jw-bk9.segmentTitles[0] = "Near to me"; ObjectID = "b8l-Jw-bk9"; */
+"b8l-Jw-bk9.segmentTitles[0]" = "Közelemben";
+
+/* Class = "UISegmentedControl"; b8l-Jw-bk9.segmentTitles[1] = "Near to this city"; ObjectID = "b8l-Jw-bk9"; */
+"b8l-Jw-bk9.segmentTitles[1]" = "Ebben a városban";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "bqc-9e-Svb"; */
+"bqc-9e-Svb.text" = "Cím";
+
+/* Class = "UITextView"; text = "We are wondering what's your opinion."; ObjectID = "buW-n3-gSc"; */
+"buW-n3-gSc.text" = "Kíváncsiak vagyunk a véleményedre.";
+
+/* Class = "UILabel"; text = "Description:"; ObjectID = "eX2-V0-c4e"; */
+"eX2-V0-c4e.text" = "Leírás:";
+
+/* Class = "UILabel"; text = "Vandad Nahadvandipoor"; ObjectID = "eox-Rb-PGV"; */
+"eox-Rb-PGV.text" = "Vandad Nahadvandipoor";
+
+/* Class = "UILabel"; text = "Some comment form a user of Kuriozumok...."; ObjectID = "iPc-LQ-NRF"; */
+"iPc-LQ-NRF.text" = "Vlmilyen hozzászólás....";
+
+/* Class = "UISegmentedControl"; kBR-AH-kmu.segmentTitles[0] = "1 km"; ObjectID = "kBR-AH-kmu"; */
+"kBR-AH-kmu.segmentTitles[0]" = "1 km";
+
+/* Class = "UISegmentedControl"; kBR-AH-kmu.segmentTitles[1] = "3 km"; ObjectID = "kBR-AH-kmu"; */
+"kBR-AH-kmu.segmentTitles[1]" = "3 km";
+
+/* Class = "UISegmentedControl"; kBR-AH-kmu.segmentTitles[2] = "5 km"; ObjectID = "kBR-AH-kmu"; */
+"kBR-AH-kmu.segmentTitles[2]" = "5 km";
+
+/* Class = "UINavigationItem"; title = "Comments"; ObjectID = "kME-9t-OdC"; */
+"kME-9t-OdC.title" = "Hozzászólások";
+
+/* Class = "UILabel"; text = "Address:"; ObjectID = "lCM-py-s1x"; */
+"lCM-py-s1x.text" = "Cím:";
+
+/* Class = "UITextField"; placeholder = "Your name"; ObjectID = "lYG-Mz-7tM"; */
+"lYG-Mz-7tM.placeholder" = "Neved";
+
+/* Class = "UILabel"; text = "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."; ObjectID = "nod-6J-Uq4"; */
+"nod-6J-Uq4.text" = "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.";
+
+/* Class = "UINavigationItem"; title = "List of cities"; ObjectID = "oum-RX-EMe"; */
+"oum-RX-EMe.title" = "List of cities";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "pjq-rM-aD3"; */
+"pjq-rM-aD3.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UINavigationItem"; title = "Search"; ObjectID = "sA0-mh-DZi"; */
+"sA0-mh-DZi.title" = "Keresés";
+
+/* Class = "UILabel"; text = "2015-12-14 09:23:11"; ObjectID = "soz-de-Y54"; */
+"soz-de-Y54.text" = "2015-12-14 09:23:11";
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "vNW-GU-aaX"; */
+"vNW-GU-aaX.normalTitle" = "Keresés";
+
+/* Class = "UIBarButtonItem"; title = "Comments"; ObjectID = "xaG-Xw-3zO"; */
+"xaG-Xw-3zO.title" = "Hozzászólások";
+
+/* Class = "UIBarButtonItem"; title = "Map"; ObjectID = "xgs-ZZ-G5o"; */
+"xgs-ZZ-G5o.title" = "Térkép";
+
+/* Class = "UINavigationItem"; title = "Results on map"; ObjectID = "xnp-nN-M8C"; */
+"xnp-nN-M8C.title" = "Találatok a térképen";
+
+/* Class = "UILabel"; text = "Your GPS location"; ObjectID = "yTO-mi-LRG"; */
+"yTO-mi-LRG.text" = "Helyzeted";

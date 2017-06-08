@@ -7,13 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1048CD502A599514F0CC9B34 /* Pods_Kuriozumok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFEDCB863FCECB06A0C83B1 /* Pods_Kuriozumok.framework */; };
+		A85834A1B90DEC12927F4D26 /* Pods_KuriozumokTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D663ABF78E3ABAFFD23E9D /* Pods_KuriozumokTests.framework */; };
+		D760C8C51C3EC09900FA50AB /* NameCardPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760C8C41C3EC09900FA50AB /* NameCardPinAnnotationView.swift */; };
+		D760C8CD1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760C8CC1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift */; };
+		D78200111C45482300596A3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D782000F1C45482300596A3D /* Localizable.strings */; };
 		D79AB13C1BFF2ABC003C5B2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB13B1BFF2ABC003C5B2B /* AppDelegate.swift */; };
-		D79AB13E1BFF2ABC003C5B2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB13D1BFF2ABC003C5B2B /* ViewController.swift */; };
 		D79AB1411BFF2ABC003C5B2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D79AB13F1BFF2ABC003C5B2B /* Main.storyboard */; };
 		D79AB1431BFF2ABC003C5B2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D79AB1421BFF2ABC003C5B2B /* Assets.xcassets */; };
 		D79AB1461BFF2ABC003C5B2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D79AB1441BFF2ABC003C5B2B /* LaunchScreen.storyboard */; };
 		D79AB1511BFF2ABC003C5B2B /* KuriozumokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB1501BFF2ABC003C5B2B /* KuriozumokTests.swift */; };
 		D79AB15C1BFF2ABC003C5B2B /* KuriozumokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB15B1BFF2ABC003C5B2B /* KuriozumokUITests.swift */; };
+		D79AB1701BFF4082003C5B2B /* SearchSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB16F1BFF4082003C5B2B /* SearchSettingsViewController.swift */; };
+		D79AB1731BFF45BF003C5B2B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB1721BFF45BF003C5B2B /* Category.swift */; };
+		D79AB1761BFF6421003C5B2B /* KuriozumokUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AB1751BFF6421003C5B2B /* KuriozumokUtil.swift */; };
+		D7D993DE1C045E2800DF5F9A /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D993DD1C045E2800DF5F9A /* SearchResultCell.swift */; };
+		D7D993E01C045F1200DF5F9A /* NameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D993DF1C045F1200DF5F9A /* NameCard.swift */; };
+		D7D993E21C045FE900DF5F9A /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D993E11C045FE900DF5F9A /* Comment.swift */; };
+		D7D993E41C046DC100DF5F9A /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D993E31C046DC100DF5F9A /* SearchResultsViewController.swift */; };
+		D7D993E71C047BF000DF5F9A /* SearchResultsTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7D993E61C047BF000DF5F9A /* SearchResultsTableHeader.xib */; };
+		D7D993E91C048E2900DF5F9A /* NameCardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D993E81C048E2900DF5F9A /* NameCardDetailsViewController.swift */; };
+		D7DB1E011C184077003BFE51 /* ProposalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DB1E001C184077003BFE51 /* ProposalViewController.swift */; };
+		D7E319BB1C1EE448006D7096 /* CommentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E319BA1C1EE448006D7096 /* CommentListTableViewController.swift */; };
+		D7E319BD1C1EE580006D7096 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E319BC1C1EE580006D7096 /* CommentCell.swift */; };
+		D7E319BF1C1EF2D9006D7096 /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E319BE1C1EF2D9006D7096 /* AddCommentViewController.swift */; };
+		D7F2B9CF1C50E60400F3D60C /* ImagePagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F2B9CE1C50E60400F3D60C /* ImagePagerViewController.swift */; };
+		D7F6BD201C03604200E20F97 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F6BD1F1C03604200E20F97 /* CityListViewController.swift */; };
+		F95F1C6F539FD92C3EF9D467 /* Pods_KuriozumokUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CD4DABBD39F094FBE05975 /* Pods_KuriozumokUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +53,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D72DB9081C3D5790006077AD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		06E6134B7CA83C11457CFEA2 /* Pods-KuriozumokTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuriozumokTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuriozumokTests/Pods-KuriozumokTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3A40673D2825D8ACDDE09307 /* Pods-KuriozumokUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuriozumokUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KuriozumokUITests/Pods-KuriozumokUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3EFEDCB863FCECB06A0C83B1 /* Pods_Kuriozumok.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kuriozumok.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40D663ABF78E3ABAFFD23E9D /* Pods_KuriozumokTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuriozumokTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EDCBD0F148F7DA0660F9DD0 /* Pods-KuriozumokTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuriozumokTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuriozumokTests/Pods-KuriozumokTests.release.xcconfig"; sourceTree = "<group>"; };
+		72C1C76DA066D9129E27B70D /* Pods-Kuriozumok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuriozumok.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kuriozumok/Pods-Kuriozumok.debug.xcconfig"; sourceTree = "<group>"; };
+		81CDCBEF3A8DB1D2D110FC16 /* Pods-KuriozumokUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuriozumokUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuriozumokUITests/Pods-KuriozumokUITests.release.xcconfig"; sourceTree = "<group>"; };
+		993C9D34E65C344D75140113 /* Pods-Kuriozumok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuriozumok.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kuriozumok/Pods-Kuriozumok.release.xcconfig"; sourceTree = "<group>"; };
+		D760C8C41C3EC09900FA50AB /* NameCardPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameCardPinAnnotationView.swift; path = CustomViews/NameCardPinAnnotationView.swift; sourceTree = "<group>"; };
+		D760C8CC1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultOnMapViewController.swift; path = ViewControllers/SearchResultOnMapViewController.swift; sourceTree = "<group>"; };
+		D782000E1C4541E900596A3D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Main.strings; sourceTree = "<group>"; };
+		D78200101C45482300596A3D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D78200121C45486900596A3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D79AB1381BFF2ABC003C5B2B /* Kuriozumok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kuriozumok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79AB13B1BFF2ABC003C5B2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D79AB13D1BFF2ABC003C5B2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D79AB1401BFF2ABC003C5B2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D79AB1421BFF2ABC003C5B2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D79AB1451BFF2ABC003C5B2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +92,22 @@
 		D79AB1571BFF2ABC003C5B2B /* KuriozumokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KuriozumokUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79AB15B1BFF2ABC003C5B2B /* KuriozumokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuriozumokUITests.swift; sourceTree = "<group>"; };
 		D79AB15D1BFF2ABC003C5B2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D79AB16F1BFF4082003C5B2B /* SearchSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchSettingsViewController.swift; path = ViewControllers/SearchSettingsViewController.swift; sourceTree = "<group>"; };
+		D79AB1721BFF45BF003C5B2B /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
+		D79AB1751BFF6421003C5B2B /* KuriozumokUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KuriozumokUtil.swift; path = Util/KuriozumokUtil.swift; sourceTree = "<group>"; };
+		D7D993DD1C045E2800DF5F9A /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultCell.swift; path = CustomCells/SearchResultCell.swift; sourceTree = "<group>"; };
+		D7D993DF1C045F1200DF5F9A /* NameCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameCard.swift; path = Model/NameCard.swift; sourceTree = "<group>"; };
+		D7D993E11C045FE900DF5F9A /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = Model/Comment.swift; sourceTree = "<group>"; };
+		D7D993E31C046DC100DF5F9A /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultsViewController.swift; path = ViewControllers/SearchResultsViewController.swift; sourceTree = "<group>"; };
+		D7D993E61C047BF000DF5F9A /* SearchResultsTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchResultsTableHeader.xib; path = CustomViews/SearchResultsTableHeader.xib; sourceTree = "<group>"; };
+		D7D993E81C048E2900DF5F9A /* NameCardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameCardDetailsViewController.swift; path = ViewControllers/NameCardDetailsViewController.swift; sourceTree = "<group>"; };
+		D7DB1E001C184077003BFE51 /* ProposalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalViewController.swift; sourceTree = "<group>"; };
+		D7E319BA1C1EE448006D7096 /* CommentListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentListTableViewController.swift; path = ViewControllers/CommentListTableViewController.swift; sourceTree = "<group>"; };
+		D7E319BC1C1EE580006D7096 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = CustomCells/CommentCell.swift; sourceTree = "<group>"; };
+		D7E319BE1C1EF2D9006D7096 /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCommentViewController.swift; path = ViewControllers/AddCommentViewController.swift; sourceTree = "<group>"; };
+		D7F2B9CE1C50E60400F3D60C /* ImagePagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePagerViewController.swift; path = ViewControllers/ImagePagerViewController.swift; sourceTree = "<group>"; };
+		D7F6BD1F1C03604200E20F97 /* CityListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityListViewController.swift; path = ViewControllers/CityListViewController.swift; sourceTree = "<group>"; };
+		E9CD4DABBD39F094FBE05975 /* Pods_KuriozumokUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KuriozumokUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1048CD502A599514F0CC9B34 /* Pods_Kuriozumok.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85834A1B90DEC12927F4D26 /* Pods_KuriozumokTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +131,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F95F1C6F539FD92C3EF9D467 /* Pods_KuriozumokUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AD937209254F84D8AC78E99 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72C1C76DA066D9129E27B70D /* Pods-Kuriozumok.debug.xcconfig */,
+				993C9D34E65C344D75140113 /* Pods-Kuriozumok.release.xcconfig */,
+				06E6134B7CA83C11457CFEA2 /* Pods-KuriozumokTests.debug.xcconfig */,
+				6EDCBD0F148F7DA0660F9DD0 /* Pods-KuriozumokTests.release.xcconfig */,
+				3A40673D2825D8ACDDE09307 /* Pods-KuriozumokUITests.debug.xcconfig */,
+				81CDCBEF3A8DB1D2D110FC16 /* Pods-KuriozumokUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D79AB12F1BFF2ABC003C5B2B = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +158,8 @@
 				D79AB14F1BFF2ABC003C5B2B /* KuriozumokTests */,
 				D79AB15A1BFF2ABC003C5B2B /* KuriozumokUITests */,
 				D79AB1391BFF2ABC003C5B2B /* Products */,
+				3AD937209254F84D8AC78E99 /* Pods */,
+				F76CB8BC2AC1F3B23F196BD6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +176,13 @@
 		D79AB13A1BFF2ABC003C5B2B /* Kuriozumok */ = {
 			isa = PBXGroup;
 			children = (
+				D782000F1C45482300596A3D /* Localizable.strings */,
+				D7D993E51C047B9500DF5F9A /* CustomViews */,
+				D7D993DC1C045DED00DF5F9A /* CustomCells */,
+				D79AB1741BFF63FC003C5B2B /* Util */,
+				D79AB1711BFF459C003C5B2B /* Model */,
+				D79AB16E1BFF4034003C5B2B /* ViewControllers */,
 				D79AB13B1BFF2ABC003C5B2B /* AppDelegate.swift */,
-				D79AB13D1BFF2ABC003C5B2B /* ViewController.swift */,
 				D79AB13F1BFF2ABC003C5B2B /* Main.storyboard */,
 				D79AB1421BFF2ABC003C5B2B /* Assets.xcassets */,
 				D79AB1441BFF2ABC003C5B2B /* LaunchScreen.storyboard */,
@@ -125,6 +209,68 @@
 			path = KuriozumokUITests;
 			sourceTree = "<group>";
 		};
+		D79AB16E1BFF4034003C5B2B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D79AB16F1BFF4082003C5B2B /* SearchSettingsViewController.swift */,
+				D7F6BD1F1C03604200E20F97 /* CityListViewController.swift */,
+				D7D993E31C046DC100DF5F9A /* SearchResultsViewController.swift */,
+				D7D993E81C048E2900DF5F9A /* NameCardDetailsViewController.swift */,
+				D7DB1E001C184077003BFE51 /* ProposalViewController.swift */,
+				D7E319BA1C1EE448006D7096 /* CommentListTableViewController.swift */,
+				D7E319BE1C1EF2D9006D7096 /* AddCommentViewController.swift */,
+				D760C8CC1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift */,
+				D7F2B9CE1C50E60400F3D60C /* ImagePagerViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D79AB1711BFF459C003C5B2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D79AB1721BFF45BF003C5B2B /* Category.swift */,
+				D7D993DF1C045F1200DF5F9A /* NameCard.swift */,
+				D7D993E11C045FE900DF5F9A /* Comment.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D79AB1741BFF63FC003C5B2B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D79AB1751BFF6421003C5B2B /* KuriozumokUtil.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		D7D993DC1C045DED00DF5F9A /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				D7D993DD1C045E2800DF5F9A /* SearchResultCell.swift */,
+				D7E319BC1C1EE580006D7096 /* CommentCell.swift */,
+			);
+			name = CustomCells;
+			sourceTree = "<group>";
+		};
+		D7D993E51C047B9500DF5F9A /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				D7D993E61C047BF000DF5F9A /* SearchResultsTableHeader.xib */,
+				D760C8C41C3EC09900FA50AB /* NameCardPinAnnotationView.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		F76CB8BC2AC1F3B23F196BD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EFEDCB863FCECB06A0C83B1 /* Pods_Kuriozumok.framework */,
+				40D663ABF78E3ABAFFD23E9D /* Pods_KuriozumokTests.framework */,
+				E9CD4DABBD39F094FBE05975 /* Pods_KuriozumokUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +278,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D79AB1601BFF2ABC003C5B2B /* Build configuration list for PBXNativeTarget "Kuriozumok" */;
 			buildPhases = (
+				4AC40F5B72256CA1009AC750 /* [CP] Check Pods Manifest.lock */,
 				D79AB1341BFF2ABC003C5B2B /* Sources */,
 				D79AB1351BFF2ABC003C5B2B /* Frameworks */,
 				D79AB1361BFF2ABC003C5B2B /* Resources */,
+				D72DB9081C3D5790006077AD /* Embed Frameworks */,
+				B118E2E08F2C9C326F8C02EC /* [CP] Embed Pods Frameworks */,
+				63884B8F4961C0EF5957F153 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +299,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D79AB1631BFF2ABC003C5B2B /* Build configuration list for PBXNativeTarget "KuriozumokTests" */;
 			buildPhases = (
+				A909D69E284CFE489BA316D1 /* [CP] Check Pods Manifest.lock */,
 				D79AB1481BFF2ABC003C5B2B /* Sources */,
 				D79AB1491BFF2ABC003C5B2B /* Frameworks */,
 				D79AB14A1BFF2ABC003C5B2B /* Resources */,
+				4A4FC46D86EFB6D09A85E5B9 /* [CP] Embed Pods Frameworks */,
+				5627D5123C51019F298BF754 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +320,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D79AB1661BFF2ABC003C5B2B /* Build configuration list for PBXNativeTarget "KuriozumokUITests" */;
 			buildPhases = (
+				8D331FE50812C7EC5B7F225D /* [CP] Check Pods Manifest.lock */,
 				D79AB1531BFF2ABC003C5B2B /* Sources */,
 				D79AB1541BFF2ABC003C5B2B /* Frameworks */,
 				D79AB1551BFF2ABC003C5B2B /* Resources */,
+				7E46AEA7552AEC235FF1B50C /* [CP] Embed Pods Frameworks */,
+				8864056C21B7AC48AFDB75E9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,18 +344,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Kiss Rudolf Zsolt";
 				TargetAttributes = {
 					D79AB1371BFF2ABC003C5B2B = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = E9H2YF754J;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 					};
 					D79AB14B1BFF2ABC003C5B2B = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = D79AB1371BFF2ABC003C5B2B;
 					};
 					D79AB1561BFF2ABC003C5B2B = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = D79AB1371BFF2ABC003C5B2B;
 					};
 				};
@@ -211,6 +372,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hu,
 			);
 			mainGroup = D79AB12F1BFF2ABC003C5B2B;
 			productRefGroup = D79AB1391BFF2ABC003C5B2B /* Products */;
@@ -229,7 +391,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D78200111C45482300596A3D /* Localizable.strings in Resources */,
 				D79AB1461BFF2ABC003C5B2B /* LaunchScreen.storyboard in Resources */,
+				D7D993E71C047BF000DF5F9A /* SearchResultsTableHeader.xib in Resources */,
 				D79AB1431BFF2ABC003C5B2B /* Assets.xcassets in Resources */,
 				D79AB1411BFF2ABC003C5B2B /* Main.storyboard in Resources */,
 			);
@@ -251,13 +415,166 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4A4FC46D86EFB6D09A85E5B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KuriozumokTests/Pods-KuriozumokTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AC40F5B72256CA1009AC750 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5627D5123C51019F298BF754 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KuriozumokTests/Pods-KuriozumokTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63884B8F4961C0EF5957F153 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kuriozumok/Pods-Kuriozumok-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E46AEA7552AEC235FF1B50C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KuriozumokUITests/Pods-KuriozumokUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8864056C21B7AC48AFDB75E9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KuriozumokUITests/Pods-KuriozumokUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D331FE50812C7EC5B7F225D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A909D69E284CFE489BA316D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B118E2E08F2C9C326F8C02EC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kuriozumok/Pods-Kuriozumok-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D79AB1341BFF2ABC003C5B2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D79AB13E1BFF2ABC003C5B2B /* ViewController.swift in Sources */,
+				D7E319BD1C1EE580006D7096 /* CommentCell.swift in Sources */,
+				D7DB1E011C184077003BFE51 /* ProposalViewController.swift in Sources */,
 				D79AB13C1BFF2ABC003C5B2B /* AppDelegate.swift in Sources */,
+				D760C8C51C3EC09900FA50AB /* NameCardPinAnnotationView.swift in Sources */,
+				D7D993E01C045F1200DF5F9A /* NameCard.swift in Sources */,
+				D79AB1761BFF6421003C5B2B /* KuriozumokUtil.swift in Sources */,
+				D7D993E21C045FE900DF5F9A /* Comment.swift in Sources */,
+				D7E319BB1C1EE448006D7096 /* CommentListTableViewController.swift in Sources */,
+				D79AB1701BFF4082003C5B2B /* SearchSettingsViewController.swift in Sources */,
+				D7F6BD201C03604200E20F97 /* CityListViewController.swift in Sources */,
+				D7F2B9CF1C50E60400F3D60C /* ImagePagerViewController.swift in Sources */,
+				D7D993DE1C045E2800DF5F9A /* SearchResultCell.swift in Sources */,
+				D7D993E41C046DC100DF5F9A /* SearchResultsViewController.swift in Sources */,
+				D7D993E91C048E2900DF5F9A /* NameCardDetailsViewController.swift in Sources */,
+				D7E319BF1C1EF2D9006D7096 /* AddCommentViewController.swift in Sources */,
+				D79AB1731BFF45BF003C5B2B /* Category.swift in Sources */,
+				D760C8CD1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,10 +610,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D782000F1C45482300596A3D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D78200101C45482300596A3D /* hu */,
+				D78200121C45486900596A3D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D79AB13F1BFF2ABC003C5B2B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D79AB1401BFF2ABC003C5B2B /* Base */,
+				D782000E1C4541E900596A3D /* hu */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -316,6 +643,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -325,8 +653,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -360,6 +690,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -369,8 +700,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -389,63 +722,90 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		D79AB1611BFF2ABC003C5B2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72C1C76DA066D9129E27B70D /* Pods-Kuriozumok.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Csaba Schweiger (5RKL3Y2AA5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Kuriozumok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hu.zsoltkiss.Kuriozumok;
+				PRODUCT_BUNDLE_IDENTIFIER = hu.weborient.Kuriozumok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		D79AB1621BFF2ABC003C5B2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 993C9D34E65C344D75140113 /* Pods-Kuriozumok.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Csaba Schweiger (5RKL3Y2AA5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Kuriozumok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hu.zsoltkiss.Kuriozumok;
+				PRODUCT_BUNDLE_IDENTIFIER = hu.weborient.Kuriozumok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		D79AB1641BFF2ABC003C5B2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06E6134B7CA83C11457CFEA2 /* Pods-KuriozumokTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KuriozumokTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hu.zsoltkiss.KuriozumokTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kuriozumok.app/Kuriozumok";
 			};
 			name = Debug;
 		};
 		D79AB1651BFF2ABC003C5B2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EDCBD0F148F7DA0660F9DD0 /* Pods-KuriozumokTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KuriozumokTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hu.zsoltkiss.KuriozumokTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kuriozumok.app/Kuriozumok";
 			};
 			name = Release;
 		};
 		D79AB1671BFF2ABC003C5B2B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A40673D2825D8ACDDE09307 /* Pods-KuriozumokUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = KuriozumokUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hu.zsoltkiss.KuriozumokUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Kuriozumok;
 				USES_XCTRUNNER = YES;
 			};
@@ -453,11 +813,13 @@
 		};
 		D79AB1681BFF2ABC003C5B2B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81CDCBEF3A8DB1D2D110FC16 /* Pods-KuriozumokUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = KuriozumokUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hu.zsoltkiss.KuriozumokUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Kuriozumok;
 				USES_XCTRUNNER = YES;
 			};
@@ -482,6 +844,7 @@
 				D79AB1621BFF2ABC003C5B2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D79AB1631BFF2ABC003C5B2B /* Build configuration list for PBXNativeTarget "KuriozumokTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +853,7 @@
 				D79AB1651BFF2ABC003C5B2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D79AB1661BFF2ABC003C5B2B /* Build configuration list for PBXNativeTarget "KuriozumokUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +862,7 @@
 				D79AB1681BFF2ABC003C5B2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
