@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import RxSwift
 import Alamofire
+import RxAlamofire
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -21,17 +24,17 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
-class SearchResultsViewController: UITableViewController, NSURLConnectionDataDelegate {
+class SearchResultsViewController: UITableViewController {
     
     @IBOutlet weak var lbHeaderInfoOrdering: UILabel!
     @IBOutlet weak var scOrdering: UISegmentedControl!
     
-    var searchQuery: String!
+    var searchParams: [String:Any]!
     
     fileprivate weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var serverResponseData: Data!
     fileprivate var searchResults = Array<NameCard>()
+    private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,14 +71,9 @@ class SearchResultsViewController: UITableViewController, NSURLConnectionDataDel
         self.activityIndicator.startAnimating()
         
         self.fetchSearchResults()
-        
-//        self.fetchSearchResultsAlamo()
-
     }
 
-
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -96,21 +94,16 @@ class SearchResultsViewController: UITableViewController, NSURLConnectionDataDel
 
         return cell
     }
-
     
-   // MARK: - UITableViewDelegate protocol
+    // MARK: - UITableViewDelegate protocol
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "ShowNameCardDetailsSegue", sender: nil)
     }
 
-    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if "ShowNameCardDetailsSegue" == segue.identifier {
-            
             if let nextVC = segue.destination as? NameCardDetailsViewController {
                 let rowIndex = self.tableView.indexPathForSelectedRow?.row
                 
@@ -120,22 +113,13 @@ class SearchResultsViewController: UITableViewController, NSURLConnectionDataDel
                 nextVC.selectedNameCard = selNC
             }
         } else if "MapSegue" == segue.identifier {
-            // TODO: use real center coordinate instead
-            
-            // Gyulai Vár: 46.645996, 21.286005
-//            CLLocationCoordinate2D centerCoords = CLLocationCoordinate2DMake(46.645996, 21.286005);
-            
             if let nextVC = segue.destination as? SearchResultOnMapViewController {
                 nextVC.results = self.searchResults
             }
-            
         }
     }
-    
-    
-    
+
     // MARK: - Action handling
-    
     @IBAction func orderingChanged(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
@@ -145,206 +129,53 @@ class SearchResultsViewController: UITableViewController, NSURLConnectionDataDel
         }
         
         self.tableView.reloadData()
-        
     }
-    
-    // MARK: - NSURLConnectionDataDelegate
-    
-    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
-        self.activityIndicator.stopAnimating();
-        
-        print("\(error)")
-        
-        self.displayConnectionError()
-
-    }
-    
-    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
-        self.serverResponseData = Data()
-    }
-   
-    func connection(_ connection: NSURLConnection, didReceive data: Data) {
-        self.serverResponseData.append(data)
-    }
-    
-  
-    func connectionDidFinishLoading(_ connection: NSURLConnection) {
-        
-        let someStructure = (try! JSONSerialization.jsonObject(with: self.serverResponseData!, options: JSONSerialization.ReadingOptions.mutableContainers))
-        print("JSON response for search results fetch: \(someStructure)")
-        
-        if let arrayOfNameCards = someStructure as? NSArray {
-            for rawData in arrayOfNameCards {
-                let aCard = NameCard(dictionary: rawData as! Dictionary)
-                
-                self.searchResults.append(aCard)
-                
-            }
-        } else if let onlyOneCard = someStructure as? NSDictionary {
-            let aCard = NameCard(dictionary: onlyOneCard as! Dictionary<String, AnyObject>)
-            self.searchResults.append(aCard)
-        } else {
-            print("What the heck the server has sent us?? >> \(someStructure)")
-        }
-     
-//        let arrayOfNameCards: NSArray = (try! NSJSONSerialization.JSONObjectWithData(self.serverResponseData!, options: NSJSONReadingOptions.MutableContainers)) as! NSArray
-        
-//        print("JSON response for search results fetch: \(arrayOfNameCards)")
-        
-        
-        
-        self.activityIndicator.stopAnimating()
-        
-        self.orderByName()
-        self.tableView.reloadData()
-    
-    }
-
-    
     
     // MARK: - Private methods
-    
-    fileprivate func fetchSearchResultsAlamo() {
-        let fullUrlAsString = REQUEST_URL_SEARCH + self.searchQuery
-        
-        let alamoReq = Alamofire.request(fullUrlAsString)
-        
-        alamoReq.responseJSON { (alamoResponse) -> Void in
-            
-            if let req = alamoResponse.request {
-                print(req)  // original URL request
-            }
-            
-            if let res = alamoResponse.response {
-                print(res) // URL response
-            }
-            
-            if let data = alamoResponse.data {
-                print(data)     // server data
-            }
-            
-            print(alamoResponse.result)   // result of response serialization
-            
-//            if let result = alamoResponse.result {
-//                
-//            }
-            
-            if (alamoResponse.response!).statusCode == 200 {
+    private func fetchSearchResults() {
+        request(.get, REQUEST_URL_SEARCH, parameters: searchParams)
+            .flatMap {request in
+                request
+                    .validate(statusCode: 200 ..< 300)
+                    .validate(contentType: ["text/json", "application/json"])
+                    .rx.json()
+            }.subscribe(onNext: { [weak self] in
+                print("Fetching search results with RxAlamofire: \($0)")
                 
-                if let responseAsJson = alamoResponse.result.value {
-                    print("JSON response for search results fetch: \(responseAsJson)")
-                    
-                    if let arrayOfNameCards = responseAsJson as? NSArray {
-                        for rawData in arrayOfNameCards {
-                            let aCard = NameCard(dictionary: rawData as! Dictionary)
-                            
-                            self.searchResults.append(aCard)
-                            
-                        }
-                    } else if let onlyOneCard = responseAsJson as? NSDictionary {
-                        let aCard = NameCard(dictionary: onlyOneCard as! Dictionary<String, AnyObject>)
-                        self.searchResults.append(aCard)
+                if let arrayOfNameCards = $0 as? [Dictionary<String, AnyObject>] {
+                    for rawData in arrayOfNameCards {
+                        let aCard = NameCard(dictionary: rawData)
+                        self?.searchResults.append(aCard)
                     }
-                    
-                    self.orderByName()
-                    self.tableView.reloadData()
-                    
-                    if self.searchResults.count == 0 {
-                        self.displayNoResultsInfoMessage()
-                    }
-                    
+                } else if let onlyOneCard = $0 as? Dictionary<String, AnyObject> {
+                    let aCard = NameCard(dictionary: onlyOneCard)
+                    self?.searchResults.append(aCard)
                 }
                 
+                self?.activityIndicator.stopAnimating()
+                self?.orderByName()
+                self?.tableView.reloadData()
                 
-            } else {
-                print("\(String(describing: alamoResponse.result.error))")
-                self.displayServerError()
-            }
-            
-            
-            self.activityIndicator.stopAnimating()
-            
-            
-
-        }
-        
-    }
-    
-    fileprivate func fetchSearchResults() {
-        if (self.searchQuery != nil) {
-            
-            let fullUrlAsString = REQUEST_URL_SEARCH + self.searchQuery
-            print("Full search url: \(fullUrlAsString)")
-            
-            let escapedPath = fullUrlAsString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-            print("Url escaped: \(String(describing: escapedPath))")
-            
-            let url = URL(string: escapedPath!)
-            let request = URLRequest(url: url!)
-            
-//            _ = NSURLConnection(request: request, delegate: self)
-            
-            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: { (response, data, error) -> Void in
-                if error != nil {
-                    print("\(String(describing: error))")
-                    self.displayServerError()
-                    
-                } else {
-                    print("Response to name card search request: \(String(describing: response))")
-                    
-                    if (response as! HTTPURLResponse).statusCode == 200 {
-                        
-                        let someStructure = (try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers))
-                        print("JSON response for search results fetch: \(someStructure)")
-                        
-                        if let arrayOfNameCards = someStructure as? NSArray {
-                            for rawData in arrayOfNameCards {
-                                let aCard = NameCard(dictionary: rawData as! Dictionary)
-                                
-                                self.searchResults.append(aCard)
-                                
-                            }
-                        } else if let onlyOneCard = someStructure as? NSDictionary {
-                            let aCard = NameCard(dictionary: onlyOneCard as! Dictionary<String, AnyObject>)
-                            self.searchResults.append(aCard)
-                        }
-                    } else {
-                        self.displayServerError()
-                    }
-                    
-                    
-                    self.activityIndicator.stopAnimating()
-                    
-                    self.orderByName()
-                    self.tableView.reloadData()
-                    
-                    if self.searchResults.count == 0 {
-                        self.displayNoResultsInfoMessage()
-                    }
-                    
+                if self?.searchResults.count == 0 {
+                    self?.displayNoResultsInfoMessage()
                 }
+                
+                }, onError: { [weak self] error in
+                    print(error)
+                    self?.activityIndicator.stopAnimating()
+                    self?.displayServerError()
             })
-            
-        }
+            .addDisposableTo(disposeBag)
     }
     
-
     func orderByName() {
         let sortedNameCards = self.searchResults.sorted(by: { (nc1, nc2) -> Bool in
             nc1.name < nc2.name
         })
         self.searchResults = sortedNameCards
-
-        
-        
-//        self.searchResults.sortInPlace { (nc1, nc2) -> Bool in
-//            return nc1.name < nc2.name
-//        }
     }
     
-    
     func orderByDistance() {
-        
         let locationOfDevice = (UIApplication.shared.delegate as! AppDelegate).deviceLocation
         
         let sortedNameCards = self.searchResults.sorted(by: { (nc1, nc2) -> Bool in
@@ -354,17 +185,8 @@ class SearchResultsViewController: UITableViewController, NSURLConnectionDataDel
             return dist1 < dist2
         })
         self.searchResults = sortedNameCards
-        
-//        self.searchResults.sortInPlace { (nc1, nc2) -> Bool in
-//            let dist1 = nc1.distanceFromLocationInMeters(locationOfDevice)
-//            let dist2 = nc2.distanceFromLocationInMeters(locationOfDevice)
-//            
-//            return dist1 < dist2
-//        }
     }
     
-    
- 
     // MARK: - Private methods
     fileprivate func displayServerError() {
         let connectionError = NSLocalizedString("Search request failed.", comment:"Name card search error message")
@@ -390,9 +212,4 @@ class SearchResultsViewController: UITableViewController, NSURLConnectionDataDel
         KuriozumokUtil.displayAlert(message, title: title, delegate: nil)
         
     }
-
-    
-
-
-
 }

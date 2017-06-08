@@ -26,7 +26,6 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
     fileprivate var locationManager: CLLocationManager!
     fileprivate var geocoder: CLGeocoder!
     fileprivate var placemark: CLPlacemark?
-//    private var locationOfDevice: CLLocation?
     
     fileprivate var hasGPSLocation: Bool = false
     
@@ -63,7 +62,6 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         var currentCell: UITableViewCell!
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectorCell") {
@@ -73,19 +71,14 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
         }
         
         let aCat = self.categories[indexPath.row]
-        
         currentCell.textLabel?.text = aCat.title
         currentCell.textLabel?.textColor = UIColor.white
-        
         currentCell.backgroundColor = KuriozumokUtil.applicationColors()[2]
-        
         
         return currentCell
     }
     
-    
     // MARK: - UITableViewDelegate protocol
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let aCat = self.categories[indexPath.row]
         aCat.selected = true
@@ -118,67 +111,24 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
-
     // MARK: - Navigation
-
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if "DisplayCityListSegue" == segue.identifier {
             
         } else if "DisplaySearchResultsSegue" == segue.identifier {
-            // ?latitude=47.46598777&longitude=17.1234567899&distance=50&ids[]=4&ids[]=5
+            let params = buildQueryParams()
             
-            
-            var queryParams = "?"
-            
-            if self.nameOfSelectedCity != nil {
-                queryParams += "town=\(self.nameOfSelectedCity!)"
-            } else if self.hasGPSLocation {
-                let deviceLocation = (UIApplication.shared.delegate as! AppDelegate).deviceLocation
-                
-                queryParams += "latitude=\(deviceLocation!.coordinate.latitude)"
-                queryParams += "&longitude=\(deviceLocation!.coordinate.longitude)"
-            }
-            
-            var distance = 1
-            
-            if self.scDistanceOptions.selectedSegmentIndex == 1 {
-                distance = 3;
-            } else if self.scDistanceOptions.selectedSegmentIndex == 2 {
-                distance = 5;
-            }
-            
-            queryParams += "&distance=\(distance)"
-            
-            for aCategory in self.categories {
-                if aCategory.selected {
-                    let part = "&ids[]=\(aCategory.categoryId!)"
-                    
-                    queryParams += part
-                }
-            }
-            
-            // Query chain for test results: ?latitude=47.46598777&longitude=17.1234567899&distance=500
-            // http://kuriozumok.petercsontos.net/api/search?town=gyula
-            // http://kuriozumok.petercsontos.net/api/search?town=Tapolca&distance=5000&ids[]=2
-            
-            //        NSString *testQueryChain = @"?latitude=47.46598777&longitude=17.1234567899&distance=500";
-            //        NSString *testQueryChain = @"?town=gyula";
-            
-            print("\(queryParams)")
+            print("QUERY STRING: \(params.0)")
+            print("QUERY PARAMS: \(params.1)")
             
             if let nextVC = segue.destination as? SearchResultsViewController {
-                nextVC.searchQuery = queryParams
+                nextVC.searchParams = params.1
             }
-
         }
     }
 
-
     // MARK: - UI action handling
     @IBAction func nearToSegmentChanged(_ sender: UISegmentedControl) {
-        
         if sender.selectedSegmentIndex == 0 {
             let defaultSegmentText = NSLocalizedString("Near to this city", comment: "text for second option on segmented control")
             sender.setTitle(defaultSegmentText, forSegmentAt: 1)
@@ -188,9 +138,7 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
         } else {
             self.performSegue(withIdentifier: "DisplayCityListSegue", sender: sender)
         }
-        
     }
-    
     
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -207,8 +155,6 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             self.hasGPSLocation = true
             self.lbLocation.text = "\(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)"
 //            print("Location found: \(newLocation.coordinate.latitude), \(newLocation.coordinate.longitude)")
-            
-            
             
             // Reverse Geocoding
             self.geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) -> Void in
@@ -253,7 +199,6 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
                 }
             })
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -275,53 +220,6 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             locationManager.startUpdatingLocation()
         }
     }
-    
-    // MARK: - NSURLConnectionDataDelegate
-    
-//    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
-//    
-//        let connectionError = NSLocalizedString("Connection to server failed.", comment:"Server connection error message")
-//        let title = NSLocalizedString("Error", comment:"Error message alert view title");
-//        KuriozumokUtil.displayAlert(connectionError, title: title, delegate: nil)
-//
-//    }
-//    
-//    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
-//        self.serverResponseData = Data()
-//    }
-//    
-//    
-//    func connection(_ connection: NSURLConnection, didReceive data: Data) {
-//        self.serverResponseData!.append(data)
-//    }
-//    
-//    func connectionDidFinishLoading(_ connection: NSURLConnection) {
-//        
-//        let jsonObject: Any?
-//        
-//        do {
-//        
-//            jsonObject = try JSONSerialization.jsonObject(with: self.serverResponseData!, options: JSONSerialization.ReadingOptions.mutableContainers)
-//            
-//            if let arrayOfCategories = jsonObject as? NSArray {
-//                
-//                //print("JSON response for categories fetch: \(arrayOfCategories)")
-//                
-//                for rawData in arrayOfCategories {
-//                    if let aCat = Category(dictionary: rawData as! Dictionary) {
-//                        self.categories.append(aCat)
-//                    }
-//                }
-//            }
-//        } catch _ {
-//            print("JSON serialization error? response: \(self.serverResponseData)")
-//        }
-//        
-//        self.tvCategories.reloadData()
-//        
-//    }
-    
-    
     
     // MARK: - Private methods
     fileprivate func fetchCategories() {
@@ -350,5 +248,50 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    private func buildQueryParams() -> (String, [String:Any]) {
+        var queryString = "?"
+        var queryParams = [String:Any]()
+        
+        if self.nameOfSelectedCity != nil {
+            queryString += "town=\(self.nameOfSelectedCity!)"
+            
+            queryParams["town"] = self.nameOfSelectedCity!
+            
+        } else if self.hasGPSLocation {
+            let deviceLocation = (UIApplication.shared.delegate as! AppDelegate).deviceLocation
+            
+            queryString += "latitude=\(deviceLocation!.coordinate.latitude)"
+            queryString += "&longitude=\(deviceLocation!.coordinate.longitude)"
+            
+            queryParams["latitude"] = "\(deviceLocation!.coordinate.latitude)"
+            queryParams["longitude"] = "\(deviceLocation!.coordinate.longitude)"
+        }
+        
+        var distance = 1
+        
+        if self.scDistanceOptions.selectedSegmentIndex == 1 {
+            distance = 3;
+        } else if self.scDistanceOptions.selectedSegmentIndex == 2 {
+            distance = 5;
+        }
+        
+        queryString += "&distance=\(distance)"
+        queryParams["distance"] = "\(distance)"
+        
+        for aCategory in self.categories {
+            if aCategory.selected {
+                let part = "&ids[]=\(aCategory.categoryId!)"
+                
+                queryString += part
+            }
+        }
+        
+        let selectedCategoryIds = self.categories.filter { $0.selected }
+            .flatMap { $0.categoryId }
+        queryParams["ids"] = selectedCategoryIds
+        
+        return (queryString, queryParams)
     }
 }

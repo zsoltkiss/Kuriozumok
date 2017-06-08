@@ -35,7 +35,6 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
 class AddCommentViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var tfAuthorName: UITextField!
@@ -59,7 +58,6 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
         
     }
 
-    
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         if self.validateInput() {
             if let author = self.tfAuthorName.text, let comment = self.tvComment.text, let ncId = self.nameCardId {
@@ -135,5 +133,4 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
         KuriozumokUtil.displayAlert(connectionError, title: title, delegate: nil)
         
     }
-
 }

@@ -61,7 +61,6 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     
     // MARK: - Action handling
-    
     @IBAction func addImageTapped(_ sender: UIButton) {
         targetImageView = sender == btnAddPicture1 ? imageView1 : imageView2
         displayImageSelectionPrompt()
@@ -99,9 +98,6 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
                 
                 KuriozumokUtil.displayAlert(message, title: title, delegate: nil)
             } else {
-                
-                
-                
                 if self.activityIndicator == nil {
                     self.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
                     self.activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
@@ -113,54 +109,10 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
                 }
                 
                 self.activityIndicator?.startAnimating()
-                
-                
                 self.uploadWithAlamo()
-                
-//                if let postRequest = self.createPostRequestWithJSONContent() {
-////                if let postRequest = self.createPostRequestTheOldWay() {
-//                    print("POST REQUEST CREATED SUCCESSFULLY: \(postRequest)")
-//                
-//                    NSURLConnection.sendAsynchronousRequest(postRequest, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
-//                        
-//                        self.activityIndicator?.stopAnimating()
-//                        if error != nil || (response! as! NSHTTPURLResponse).statusCode != 200 {
-//                            if response != nil {
-//                                print("RESPONSE to proposal: \(response)")
-//                            }
-//                            
-//                            if data != nil {
-//                                let strData = String(data: data!, encoding: NSUTF8StringEncoding)
-//                                print("DATA in response: \(strData)")
-//                            }
-//                            
-//                            print("ERROR in response: \(error)")
-//                        } else {
-//                            
-//                            let jsonReponse = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers))
-//                            
-//                            print("JSON response: \(jsonReponse)")
-//                        }
-//                        
-//                        self.imageImported1 = nil
-//                        self.imageImported2 = nil
-//                        
-//                        let placeholderImage = UIImage(named: "image_placeholder")
-//                        self.imageView1.image = placeholderImage
-//                        self.imageView2.image = placeholderImage
-//                        
-//                        self.tfName.text = ""
-//                        self.tvDescription.text = ""
-//                        
-//                        
-//                    })
-//                }
-                
             }
         }
-        
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -193,21 +145,16 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
         controller.addAction(actionCancel)
         
         self.present(controller, animated: true, completion: nil)
-
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
-        
         self.navigationController?.popViewController(animated: true)
     }
     
     
     // MARK: - UIImagePickerControllerDelegate protocol
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
         print("Image imported: \(image)")
-        
         print("editingInfo: \(String(describing: editingInfo))")
         
         let now = Date()
@@ -224,16 +171,7 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
         self.targetImageView?.image = image
         
         self.dismiss(animated: true, completion: nil)
-        
-        // Resize the image from the camera
-        //        UIImage *scaledImage = [photoImage resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(_targetView.frame.size.width, _targetView.frame.size.height) interpolationQuality:kCGInterpolationHigh];
-        // Crop the image to a square (yikes, fancy!)
-        //        UIImage *croppedImage = [scaledImage croppedImage:CGRectMake((scaledImage.size.width -_targetView.frame.size.width)/2, (scaledImage.size.height - _targetView.frame.size.height)/2, _targetView.frame.size.width, _targetView.frame.size.height)];
     }
-    
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//        
-//    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("!!! YEP !!!")
@@ -320,9 +258,6 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
                             self.postDataAddress += " \(self.placemark!.subThoroughfare!)"
                         }
                         
-                       
-    
-                        
                         // street number
                         print("subThoroughfare: \(String(describing: self.placemark?.subThoroughfare))\n")
                         
@@ -367,17 +302,7 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
         }
     }
 
-    
     // MARK: - Private methods
-    
-//    fileprivate func addGestureRecognizers() {
-//        let rec1 = UITapGestureRecognizer(target: self, action: #selector(ProposalViewController.imageTapped(_:)))
-//        let rec2 = UITapGestureRecognizer(target: self, action: #selector(ProposalViewController.imageTapped(_:)))
-//        
-//        self.imageView1.addGestureRecognizer(rec1)
-//        self.imageView2.addGestureRecognizer(rec2)
-//    }
-    
     fileprivate func displayImagePickerUsingSourceType(_ sourceTypeSelectedByUser: UIImagePickerControllerSourceType) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -393,295 +318,8 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
 
     }
     
-    fileprivate func createPostRequest(_ boundaryString: String) -> NSMutableURLRequest {
-        
-        
-        let postUrl = URL(string: REQUEST_URL_PROPOSAL)
-        let postRequest = NSMutableURLRequest(url: postUrl!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10.0)
-        postRequest.httpMethod = "POST"
-        postRequest.timeoutInterval = 60.0
-        
-        let valueForContentTypeHeader = "multipart/form-data; boundary=\(boundaryString)"
-        postRequest.setValue(valueForContentTypeHeader, forHTTPHeaderField: "ContentType")
-        
-//        let httpBody = self.createPostBody(uniqueBoundaryString)
-//        postRequest.HTTPBody = httpBody
-        
-        print("POST REQUEST: \(postRequest)")
-        
-        return postRequest
-
-    }
-    
-    fileprivate func createPostBody(_ boundaryString: String) -> NSMutableData {
-        let body = NSMutableData()
-        
-        // Post param "latitude"
-        body.append(self.boundaryDataWithNewLine(boundaryString))
-        body.append(self.contentDispositionRowForStringParam("latitude"))
-        let strLatitude = "\(self.gpsLocationOfCurio!.coordinate.latitude)"
-        body.append(self.dataFromStringParam(strLatitude))
-        
-        // Post param "longitude"
-        body.append(self.boundaryDataWithNewLine(boundaryString))
-        body.append(self.contentDispositionRowForStringParam("longitude"))
-        let strLongitude = "\(self.gpsLocationOfCurio!.coordinate.longitude)"
-        body.append(self.dataFromStringParam(strLongitude))
-        
-        // Post param "title"
-        body.append(self.boundaryDataWithNewLine(boundaryString))
-        body.append(self.contentDispositionRowForStringParam("title"))
-        body.append(self.dataFromStringParam(self.tfName.text!))
-        
-        
-        // Post param "town"
-        if self.postDataTown.isEmpty == false {
-            print("town: \(self.postDataTown)")
-            
-            body.append(self.boundaryDataWithNewLine(boundaryString))
-            body.append(self.contentDispositionRowForStringParam("town"))
-            body.append(self.dataFromStringParam(self.postDataTown))
-        }
-        
-        // Post param "address"
-        if self.postDataAddress.isEmpty == false {
-            print("address: \(self.postDataAddress)")
-            
-            body.append(self.boundaryDataWithNewLine(boundaryString))
-            body.append(self.contentDispositionRowForStringParam("address"))
-            body.append(self.dataFromStringParam(self.postDataAddress))
-        }
-        
-        // Post param "description"
-        if self.tvDescription.text!.isEmpty == false {
-            print("description: \(self.tvDescription.text)")
-            
-            body.append(self.boundaryDataWithNewLine(boundaryString))
-            body.append(self.contentDispositionRowForStringParam("description"))
-            body.append(self.dataFromStringParam(self.tvDescription.text))
-
-        }
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd_HHmmss"
-        
-        // Post param "photo1"
-        if self.imageImported1 != nil {
-            
-            let fileNameFromImportDate = formatter.string(from: self.imageDate1!)
-            
-            body.append(self.boundaryDataWithNewLine(boundaryString))
-            body.append(self.contentDispositionRowForImage("photo1", filename: "\(fileNameFromImportDate).png"))
-            body.append(self.dataFromContentType("image/png"))
-            
-            let imageData = UIImagePNGRepresentation(self.imageImported1!)
-            body.append(imageData!)
-            body.append(self.dataFromLineFeed())
-            
-        }
-        
-        // Post param "photo2"
-        if self.imageImported2 != nil {
-            
-            let fileNameFromImportDate = formatter.string(from: self.imageDate2!)
-            
-            body.append(self.boundaryDataWithNewLine(boundaryString))
-            body.append(self.contentDispositionRowForImage("photo2", filename: "\(fileNameFromImportDate).png"))
-            body.append(self.dataFromContentType("image/png"))
-            
-            let imageData = UIImagePNGRepresentation(self.imageImported2!)
-            body.append(imageData!)
-            body.append(self.dataFromLineFeed())
-            
-        }
-
-        body.append(self.boundaryDataWithNewLine(boundaryString))
-        
-        let checkString = String(data: body as Data, encoding: String.Encoding.utf8)
-        print("POST BODY: \(checkString!)")
-        
-        
-        return body
-    }
-    
-    fileprivate func contentDispositionRowForStringParam(_ paramName: String) -> Data {
-        let dispositionRow = "Content-Disposition: form-data; name=\"\(paramName)\"\r\n"
-        let cdrData = dispositionRow.data(using: String.Encoding.utf8)
-        return cdrData!
-    }
-    
-    
-    fileprivate func contentDispositionRowForImage(_ paramName: String, filename: String) -> Data {
-        let dispositionRow = "Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(filename)\""
-        let cdrData = dispositionRow.data(using: String.Encoding.utf8)
-        return cdrData!
-    }
-    
-    fileprivate func dataFromStringParam(_ paramValue: String) -> Data {
-        let valueRow = "\(paramValue)\r\n"
-        let vrData = valueRow.data(using: String.Encoding.utf8)
-        
-        return vrData!
-    }
-    
-    fileprivate func dataFromContentType(_ value: String) -> Data {
-        let valueRow = "Content-Type: \(value)\r\n\r\n"
-        let vrData = valueRow.data(using: String.Encoding.utf8)
-        
-        return vrData!
-    }
-    
-    fileprivate func dataFromLineFeed() -> Data {
-        return "\r\n".data(using: String.Encoding.utf8)!
-    }
-
-    fileprivate func boundaryDataWithNewLine(_ boundaryString: String) -> Data {
-        let boundaryAndNewLine = "\(boundaryString)\r\n"
-        let bData = boundaryAndNewLine.data(using: String.Encoding.utf8)
-        
-        return bData!
-    }
-    
-    fileprivate func boundaryString() -> String {
-//        let uniquePart = NSUUID().UUIDString
-        
-        let uniquePart = Date().timeIntervalSince1970 * 1000000
-        
-        return "-----------------------------\(uniquePart)"
-    }
-    
-    
-    fileprivate func createPostRequestTheOldWay() -> NSMutableURLRequest? {
-        let postUrl = URL(string: REQUEST_URL_PROPOSAL)
-        let postRequest = NSMutableURLRequest(url: postUrl!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 60.0)
-        postRequest.httpMethod = "POST"
-//        postRequest.addValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
-        postRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
-        print("POST DATA: ")
-        print("title: \(self.tfName.text!)")
-        var postBody = "title=\(self.tfName.text!)"
-        
-        
-        print("latitude: \(self.gpsLocationOfCurio!.coordinate.latitude)")
-        print("longitude: \(self.gpsLocationOfCurio!.coordinate.longitude)")
-        postBody += "&latitude=\(self.gpsLocationOfCurio!.coordinate.latitude)"
-        postBody += "&longitude=\(self.gpsLocationOfCurio!.coordinate.longitude)"
-        
-        if self.postDataTown.isEmpty == false {
-            print("town: \(self.postDataTown)")
-            postBody += "&town=\(self.postDataTown)"
-        }
-        
-        if self.postDataAddress.isEmpty == false {
-            print("address: \(self.postDataAddress)")
-            postBody += "&address=\(self.postDataAddress)"
-        }
-        
-        if self.tvDescription.text!.isEmpty == false {
-            print("description: \(self.tvDescription.text)")
-            postBody += "&description=\(self.tvDescription.text)"
-        }
-        
-        
-        if self.imageImported1 != nil {
-            let imageData = UIImagePNGRepresentation(self.imageImported1!)
-            let base64String = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-            
-            print("photo1: \(imageData!.count) bytes")
-            
-            postBody += "&photo1=\(base64String)"
-        }
-        
-        if self.imageImported2 != nil {
-            let imageData = UIImagePNGRepresentation(self.imageImported2!)
-            let base64String = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-            
-            print("photo2: \(imageData!.count) bytes")
-            
-            postBody += "&photo2=\(base64String)"
-        }
-        
-
-        postRequest.httpBody = postBody.data(using: String.Encoding.utf8)
-        
-        return postRequest
-    }
-    
-//    fileprivate func createPostRequestWithJSONContent() -> NSMutableURLRequest? {
-//        let postUrl = URL(string: REQUEST_URL_PROPOSAL)
-//        let postRequest = NSMutableURLRequest(url: postUrl!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 60.0)
-//        postRequest.httpMethod = "POST"
-//        postRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-////        postRequest.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        
-//        
-//        var params = [String: AnyObject]()
-//    
-//        
-//        params["title"] = self.tfName.text! as AnyObject
-//        params["latitude"] = "\(self.gpsLocationOfCurio!.coordinate.latitude)" as AnyObject
-//        params["longitude"] = "\(self.gpsLocationOfCurio!.coordinate.longitude)" as AnyObject
-//
-//        if self.postDataTown.isEmpty == false {
-//            params["town"] = self.postDataTown as AnyObject
-//        }
-//        
-//        if self.postDataAddress.isEmpty == false {
-//            params["address"] = self.postDataAddress as AnyObject
-//        }
-//        
-//        if self.tvDescription.text!.isEmpty == false {
-//            params["description"] = self.tvDescription.text as AnyObject
-//        }
-//        
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd_HHmmss"
-//        
-//        if self.imageImported1 != nil {
-//            let fileNameFromImportDate = formatter.string(from: self.imageDate1!)
-//            
-//            let imageData = UIImagePNGRepresentation(self.imageImported1!)
-//            let base64String = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-//            
-//            params["photo1"] = [ "Content-Type": "image/png", "filename":"\(fileNameFromImportDate).png", "file_data": base64String]
-//            
-////            print("photo1: \(imageData!.length) bytes, filename=\(fileNameFromImportDate)")
-//            
-//        }
-//        
-//        if self.imageImported2 != nil {
-//            let fileNameFromImportDate = formatter.string(from: self.imageDate2!)
-//            
-//            let imageData = UIImagePNGRepresentation(self.imageImported2!)
-//            
-//            let base64String = imageData!.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-//            
-//            params["photo2"] = [ "Content-Type": "image/png", "filename":"\(fileNameFromImportDate).png", "file_data": base64String]
-//            
-////            print("photo2: \(imageData!.length) bytes, filename=\(fileNameFromImportDate)")
-//        }
-//        
-//        print("Params: \(params)")
-//
-//        do {
-//            let postData = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions(rawValue: 0))
-//            postRequest.httpBody = postData
-//            print("POST BODY CREATION SUCCESS.")
-//            
-//        } catch (_) {
-//            print("POST BODY CREATION FAILED.")
-//            return nil
-//        }
-//
-//        return postRequest
-//        
-//    }
-    
     fileprivate func uploadWithAlamo() {
-        
         print("\(#function) called")
-        
         
         Alamofire.upload(multipartFormData: { multipartFormData in
             
@@ -700,10 +338,7 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
                 //the least compression (or best quality).
                 
                 multipartFormData.append(imageData!, withName: "photo1", fileName: fileNameFromImportDate, mimeType: mimeType)
-                
                 print("PHOTO1 added to multipart form data: \(fileNameFromImportDate)")
-                
-                
             }
             
             if self.imageImported2 != nil {
@@ -786,119 +421,5 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
             self.navigationController?.popViewController(animated: true)
 
         }
-        
-        
-        
-        
-//        Alamofire.upload(.POST, REQUEST_URL_PROPOSAL, multipartFormData: { (multipartFormData) -> Void in
-//
-//
-//            let titleData = self.tfName.text!.dataUsingEncoding(NSUTF8StringEncoding)
-//            multipartFormData.appendBodyPart(data: titleData!, name: "title")
-//            print("TITLE added to multipart form data: \(self.tfName.text!)")
-//            
-//            let latitudeData = "\(self.gpsLocationOfCurio!.coordinate.latitude)".dataUsingEncoding(NSUTF8StringEncoding)
-//            multipartFormData.appendBodyPart(data: latitudeData!, name: "latitude")
-//            print("LATITUDE added to multipart form data: \(self.gpsLocationOfCurio!.coordinate.latitude)")
-//
-//            
-//            let longitudeData = "\(self.gpsLocationOfCurio!.coordinate.longitude)".dataUsingEncoding(NSUTF8StringEncoding)
-//            multipartFormData.appendBodyPart(data: longitudeData!, name: "longitude")
-//            print("LONGITUDE added to multipart form data: \(self.gpsLocationOfCurio!.coordinate.longitude)")
-//
-//            
-//            if self.postDataTown.isEmpty == false {
-//                let townData = self.postDataTown.dataUsingEncoding(NSUTF8StringEncoding)
-//                multipartFormData.appendBodyPart(data: townData!, name: "town")
-//                print("TOWN added to multipart form data: \(self.postDataTown)")
-//
-//            }
-//            
-//            if self.postDataAddress.isEmpty == false {
-//                let addressData = self.postDataAddress.dataUsingEncoding(NSUTF8StringEncoding)
-//                multipartFormData.appendBodyPart(data: addressData!, name: "address")
-//                print("ADDRESS added to multipart form data: \(self.postDataAddress)")
-//
-//            }
-//            
-//            if self.tvDescription.text!.isEmpty == false {
-//                let descriptionData = self.tvDescription.text.dataUsingEncoding(NSUTF8StringEncoding)
-//                multipartFormData.appendBodyPart(data: descriptionData!, name: "description")
-//                print("DESCRIPTION added to multipart form data: \(self.tvDescription.text!)")
-//
-//            }
-//
-//            let formatter = NSDateFormatter()
-//            formatter.dateFormat = "yyyy-MM-dd_HHmmss"
-//
-//            if self.imageImported1 != nil {
-//                let fileExtension = ".jpg"  //".png"
-//                let mimeType = "image/jpg"             // "image/png"
-//                
-//                let fileNameFromImportDate = formatter.stringFromDate(self.imageDate1!) + fileExtension
-//                
-//            
-//                
-//                let imageData = UIImageJPEGRepresentation(self.imageImported1!, 0.8);
-//                //The float param (0.8 in this example) is the compression quality
-//                //expressed as a value from 0.0 to 1.0, where 1.0 represents
-//                //the least compression (or best quality).
-//                
-//                multipartFormData.appendBodyPart(data: imageData!, name: "photo1", fileName: fileNameFromImportDate, mimeType: mimeType)
-//                print("PHOTO1 added to multipart form data: \(fileNameFromImportDate)")
-//
-//                
-//            }
-//            
-//            if self.imageImported2 != nil {
-//                let fileNameFromImportDate = formatter.stringFromDate(self.imageDate2!) + ".png"
-//                
-//                let imageData = UIImagePNGRepresentation(self.imageImported2!)
-//                
-//                 multipartFormData.appendBodyPart(data: imageData!, name: "photo2", mimeType: "image/png")
-//                print("PHOTO2 added to multipart form data: \(fileNameFromImportDate)")
-//
-//                
-//            }
-//
-//            
-//
-//            }) { (encodingResult) -> Void in
-//                print("Result of Alamofire upload: \(encodingResult)\n----------------------\n")
-//                
-//                switch encodingResult {
-//                case .Success(let upload, _, _):
-//                    print("Result: .Success")
-//
-//                    upload.response(completionHandler: { (req, res, resData, resError) -> Void in
-//                        print("in completion handler, res: \(res)")
-//                        print("in completion handler, resData: \(NSString(data: resData!, encoding: NSUTF8StringEncoding))")
-//                        print("in completion handler, resError: \(resError)")
-//                    })
-//                    
-//                case .Failure(let encodingError):
-//                    print("Result: .Failure")
-//                    print(encodingError)
-//                }
-//                
-//                
-//                self.activityIndicator?.stopAnimating()
-//                
-//                
-//                self.imageImported1 = nil
-//                self.imageImported2 = nil
-//                
-//                let placeholderImage = UIImage(named: "image_placeholder")
-//                self.imageView1.image = placeholderImage
-//                self.imageView2.image = placeholderImage
-//                
-//                self.tfName.text = ""
-//                self.tvDescription.text = ""
-//                
-//                self.navigationController?.popViewControllerAnimated(true)
-//
-//                
-//        }
     }
-    
 }

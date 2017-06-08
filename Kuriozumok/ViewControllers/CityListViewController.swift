@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxAlamofire
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -32,14 +35,13 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class CityListViewController: UITableViewController, NSURLConnectionDataDelegate, UISearchResultsUpdating {
+class CityListViewController: UITableViewController, UISearchResultsUpdating {
+    var resultSearchController:UISearchController!
     
     fileprivate var serverResponseData: Data!
-    
     fileprivate var cities = Array<String>()
     fileprivate var filteredData = Array<String>()
-    
-    var resultSearchController:UISearchController!
+    private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,26 +49,16 @@ class CityListViewController: UITableViewController, NSURLConnectionDataDelegate
         self.title = NSLocalizedString("List of cities", comment: "Title on navbar")
 
         resultSearchController = UISearchController(searchResultsController: nil)
-        
         resultSearchController.searchResultsUpdater = self
-        
         resultSearchController.hidesNavigationBarDuringPresentation = false
-        
         resultSearchController.dimsBackgroundDuringPresentation = false
-        
         resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.prominent
-        
         resultSearchController.searchBar.sizeToFit()
         
         self.tableView.backgroundColor = KuriozumokUtil.applicationColors()[2]
-        
         self.tableView.tableHeaderView = resultSearchController.searchBar
-        
-        
         self.fetchCities()
     }
-
-    
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,19 +66,15 @@ class CityListViewController: UITableViewController, NSURLConnectionDataDelegate
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if resultSearchController.isActive {
             return filteredData.count
         }
         else {
             return self.cities.count
         }
-        
     }
 
-   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         var currentCell: UITableViewCell!
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell") {
@@ -107,12 +95,10 @@ class CityListViewController: UITableViewController, NSURLConnectionDataDelegate
         currentCell.textLabel?.textColor = UIColor.white
         
         return currentCell
-
     }
     
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         var nameOfSelectedCity: String!
         
         if self.resultSearchController.isActive {
@@ -130,23 +116,8 @@ class CityListViewController: UITableViewController, NSURLConnectionDataDelegate
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
     // MARK: - UISearchResultUpdating protocol
     func updateSearchResults(for searchController: UISearchController) {
-        
-        
         if searchController.searchBar.text?.characters.count > 0 {
             
             filteredData.removeAll(keepingCapacity: false)
@@ -156,61 +127,35 @@ class CityListViewController: UITableViewController, NSURLConnectionDataDelegate
             tableView.reloadData()
             
         } else {
-            
             filteredData.removeAll(keepingCapacity: false)
-            
             filteredData = self.cities
-            
             tableView.reloadData()
-            
         }
-        
-        
     }
-    
-    
-    // MARK: - NSURLConnectionDataDelegate
-    
-    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
-        
-        let connectionError = NSLocalizedString("Connection to server failed.", comment:"Server connection error message")
-        let title = NSLocalizedString("Error", comment:"Error message alert view title");
-        KuriozumokUtil.displayAlert(connectionError, title: title, delegate: nil)
-        
-    }
-    
-    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
-        self.serverResponseData = Data()
-    }
-    
-    
-    func connection(_ connection: NSURLConnection, didReceive data: Data) {
-        self.serverResponseData!.append(data)
-    }
-    
-    
-    func connectionDidFinishLoading(_ connection: NSURLConnection) {
-        
-        let arrayOfCities: NSArray = (try! JSONSerialization.jsonObject(with: self.serverResponseData!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSArray
-        print("JSON response for cities fetch: \(arrayOfCities)")
-        
-        for rawData in arrayOfCities {
-            self.cities.append(rawData as! String)
-        }
-        
-        self.tableView.reloadData()
-       
-        
-    }
-
     
     // MARK: - Private methods
     fileprivate func fetchCities() {
-        
-        let url = URL(string: REQUEST_URL_CITIES)
-        let request = URLRequest(url: url!)
-        
-        _ = NSURLConnection(request: request, delegate: self)
+        json(.get, REQUEST_URL_CITIES)
+            .subscribe(onNext: { [weak self] in
+                print("Cities fetched with RxAlamofire: \($0)")
+                
+                self?.cities = []
+                
+                if let arrayOfCities = $0 as? [String] {
+                    for rawData in arrayOfCities {
+                        self?.cities.append(rawData)
+                    }
+                }
+                
+                self?.tableView.reloadData()
+                
+                }, onError: { error in
+                    print("Cities fetch FAILED. \(error)")
+                    
+                    let connectionError = NSLocalizedString("Connection to server failed.", comment:"Server connection error message")
+                    let title = NSLocalizedString("Error", comment:"Error message alert view title");
+                    KuriozumokUtil.displayAlert(connectionError, title: title, delegate: nil)
+            })
+            .addDisposableTo(disposeBag)
     }
-
 }
