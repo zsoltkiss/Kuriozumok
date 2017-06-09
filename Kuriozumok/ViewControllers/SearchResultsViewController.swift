@@ -134,7 +134,7 @@ class SearchResultsViewController: UITableViewController {
     // MARK: - Private methods
     private func fetchSearchResults() {
         request(.get, REQUEST_URL_SEARCH, parameters: searchParams)
-            .flatMap {request in
+            .flatMap { request in
                 request
                     .validate(statusCode: 200 ..< 300)
                     .validate(contentType: ["text/json", "application/json"])

@@ -14,6 +14,7 @@ let APP_COLOR_DARK_BLUE = UIColor(red: 30.0/255.0, green: 46.0/255.0, blue: 67.0
 
 //let BASE_URL = "http://kuriozumok.petercsontos.net"
 let BASE_URL = "http://kuriozumok.hu"
+let DEV_BASE_URL = "http://dev.kuriozumok.weborient.hu"
 let REQUEST_URL_CITIES = BASE_URL + "/api/towns.json"
 let REQUEST_URL_CATEGORIES = BASE_URL + "/api/categories.json"
 let REQUEST_URL_SEARCH = BASE_URL + "/api/search"

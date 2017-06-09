@@ -9,10 +9,11 @@
 import UIKit
 import CoreLocation
 import MobileCoreServices
+import RxSwift
+import RxAlamofire
 import Alamofire
 
 class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
     
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tvDescription: UITextView!
@@ -28,9 +29,6 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
     
     fileprivate var gpsLocationOfCurio: CLLocation?
     
-    fileprivate var postDataTown: String = ""
-    fileprivate var postDataAddress: String = ""
-    
     fileprivate var descriptionFieldShouldClear = true
     
     fileprivate weak var targetImageView: UIImageView?
@@ -41,9 +39,64 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
     fileprivate var imageDate1: Date?
     fileprivate var imageDate2: Date?
 
-    
+    private var disposeBag = DisposeBag()
     fileprivate var activityIndicator: UIActivityIndicatorView?
     
+    private var locationText: String? {
+        guard let aPlacemark = self.placemark else {
+            return nil
+        }
+        
+        let city = aPlacemark.locality ?? ""
+        let country = aPlacemark.country ?? ""
+        
+        if !city.isEmpty && !country.isEmpty {
+            return "\(city), \(country)"
+        } else {
+            return city.isEmpty ? country : city
+        }
+    }
+    
+    private var postParams: [String:Any] {
+        var params = [String: Any]()
+        
+        if let title = self.tfName.text {
+            params["title"] = title
+        }
+        
+        if let desc = self.tvDescription.text {
+            if !desc.isEmpty {
+                params["description"] = desc
+            }
+        }
+        
+        if let latDegrees = self.gpsLocationOfCurio?.coordinate.latitude {
+            params["latitude"] = "\(latDegrees)"
+        }
+        
+        if let lonDegrees = self.gpsLocationOfCurio?.coordinate.longitude {
+            params["longitude"] = "\(lonDegrees)"
+        }
+        
+        if let zip = placemark?.postalCode {
+            params["postalCode"] = zip
+        }
+        
+        if let town = placemark?.locality {
+            params["town"] = town
+        }
+        
+        if let street = placemark?.thoroughfare {
+            params["street"] = street
+        }
+        
+        if let houseNumber = placemark?.subThoroughfare {
+            params["houseNumber"] = houseNumber
+        }
+        
+        return params
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -227,54 +280,8 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
                 if placemarks != nil && placemarks!.count > 0 {
                     if let aPlacemark = placemarks!.last {
                         self.placemark = aPlacemark
-                        
-                        print("Placemark found: \(aPlacemark)")
-                        
-                        var locationText = ""
-                        
-                        if self.placemark!.locality != nil {
-                            locationText += (self.placemark?.locality)!
-                        }
-                        
-                        if self.placemark!.country != nil {
-                            locationText += ", \(self.placemark!.country!)"
-                        }
-                        
-                        
-                        if self.placemark?.postalCode != nil {
-                            self.postDataTown += "\(self.placemark!.postalCode!)"
-                        }
-                        
-                        if self.placemark?.locality != nil {
-                            self.postDataTown += " \(self.placemark!.locality!)"
-                        }
-                        
-                        
-                        if self.placemark?.thoroughfare != nil {
-                            self.postDataAddress += "\(self.placemark!.thoroughfare!)"
-                        }
-                        
-                        if self.placemark?.subThoroughfare != nil {
-                            self.postDataAddress += " \(self.placemark!.subThoroughfare!)"
-                        }
-                        
-                        // street number
-                        print("subThoroughfare: \(String(describing: self.placemark?.subThoroughfare))\n")
-                        
-                        // street
-                        print("thoroughfare: \(String(describing: self.placemark?.thoroughfare))\n")
-                        
-                        // ZIP code
-                        print("postalCode: \(String(describing: self.placemark?.postalCode))\n")
-                        
-                        // county or city??
-                        print("administrativeArea: \(String(describing: self.placemark?.administrativeArea))\n")
-                        
-                        // city/town
-                        print("locality: \(String(describing: self.placemark?.locality))\n")
-                        print("country: \(String(describing: self.placemark?.country))\n")
-                        
-                        self.lbGeocodeAddress.text = locationText
+                        self.placemarkInfo(aPlacemark)
+                        self.lbGeocodeAddress.text = self.locationText
                     }
                 }
             })
@@ -325,6 +332,7 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
             
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd_HHmmss"
+            let params = self.postParams
             
             if self.imageImported1 != nil {
                 let fileExtension = ".jpg"  //".png"
@@ -349,43 +357,45 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
                 print("PHOTO2 added to multipart form data: \(fileNameFromImportDate)")
             }
             
-            if let title = self.tfName.text, let titleData = title.data(using: String.Encoding.utf8) {
+            if let title = params["title"] as? String, let titleData = title.data(using: String.Encoding.utf8) {
                 multipartFormData.append(titleData, withName: "title")
-                print("TITLE added to multipart form data: \(self.tfName.text!)")
+                print("TITLE added to multipart form data: \(title)")
             }
             
-            if let latitudeData = "\(self.gpsLocationOfCurio!.coordinate.latitude)".data(using: String.Encoding.utf8) {
+            if let description = params["description"] as? String, let descriptionData = description.data(using: String.Encoding.utf8) {
+                multipartFormData.append(descriptionData, withName: "description")
+                print("DESCRIPTION added to multipart form data: \(description)")
+            }
+            
+            if let latitude = params["latitude"] as? String, let latitudeData = latitude.data(using: String.Encoding.utf8) {
                 multipartFormData.append(latitudeData, withName: "latitude")
-                print("LATITUDE added to multipart form data: \(self.gpsLocationOfCurio!.coordinate.latitude)")
+                print("LATITUDE added to multipart form data: \(latitude)")
 
             }
             
-            if let longitudeData = "\(self.gpsLocationOfCurio!.coordinate.longitude)".data(using: String.Encoding.utf8) {
+            if let longitude = params["longitude"] as? String, let longitudeData = longitude.data(using: String.Encoding.utf8) {
                 multipartFormData.append(longitudeData, withName: "longitude")
-                print("LONGITUDE added to multipart form data: \(self.gpsLocationOfCurio!.coordinate.longitude)")
+                print("LONGITUDE added to multipart form data: \(longitude)")
             }
             
-            
-            if self.postDataTown.isEmpty == false {
-                if let townData = self.postDataTown.data(using: String.Encoding.utf8) {
-                    multipartFormData.append(townData, withName: "town")
-                    print("TOWN added to multipart form data: \(self.postDataTown)")
-                }
-            }
-        
-            if self.postDataAddress.isEmpty == false {
-                if let addressData = self.postDataAddress.data(using: String.Encoding.utf8) {
-                    multipartFormData.append(addressData, withName: "address")
-                    print("ADDRESS added to multipart form data: \(self.postDataAddress)")
-                }
+            if let postalCode = params["postalCode"] as? String, let postalCodeData = postalCode.data (using: String.Encoding.utf8) {
+                multipartFormData.append(postalCodeData, withName: "postalCode")
+                print("POSTAL CODE added to multipart form data: \(postalCode)")
             }
             
+            if let town = params["town"] as? String, let townData = town.data(using: String.Encoding.utf8) {
+                multipartFormData.append(townData, withName: "town")
+                print("TOWN added to multipart form data: \(town)")
+            }
             
-            if self.tvDescription.text!.isEmpty == false {
-                if let descriptionData = self.tvDescription.text.data(using: String.Encoding.utf8) {
-                    multipartFormData.append(descriptionData, withName: "description")
-                    print("DESCRIPTION added to multipart form data: \(self.tvDescription.text!)")
-                }
+            if let street = params["street"] as? String, let streetData = street.data(using: String.Encoding.utf8) {
+                multipartFormData.append(streetData, withName: "street")
+                print("STREET added to multipart form data: \(street)")
+            }
+            
+            if let houseNumber = params["houseNumber"] as? String, let houseNumberData = houseNumber.data(using: String.Encoding.utf8) {
+                multipartFormData.append(houseNumberData, withName: "houseNumber")
+                print("HOUSE NUMBER added to multipart form data: \(houseNumber)")
             }
             
         }, to: REQUEST_URL_PROPOSAL) { (encodingResult) -> Void  in
@@ -395,31 +405,66 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
             case .success(let upload, _, _):
                 print("Result: .success")
                 
-                upload.responseData(completionHandler: { (response) in
-                    //todo
-                    print("in completion handler, res: \(response)")
-                })
+                print("----------------\n\n")
+                
+                
+//                upload.responseJSON { response in
+//                    print("JSON resposne: \(response)")
+//                    
+//                    self.activityIndicator?.stopAnimating()
+//                }
+                
+                upload.responseString { response in
+                    debugPrint("String response: \(response)")
+                    
+                    self.activityIndicator?.stopAnimating()
+                    
+                    self.imageImported1 = nil
+                    self.imageImported2 = nil
+                    
+                    self.imageView1.image = nil
+                    self.imageView2.image = nil
+                    
+                    self.tfName.text = ""
+                    self.tvDescription.text = ""
+                    
+                    self.navigationController?.popViewController(animated: true)
+
+                }
+                
+//                upload.responseData(completionHandler: { (response) in
+//                    debugPrint("Data response: \(response)")
+//                    
+//                    self.activityIndicator?.stopAnimating()
+//                })
                 
             case .failure(let encodingError):
                 print("Result: .failure")
                 print(encodingError)
+                self.activityIndicator?.stopAnimating()
             }
-            
-            
-            self.activityIndicator?.stopAnimating()
-            
-            self.imageImported1 = nil
-            self.imageImported2 = nil
-            
-            let placeholderImage = UIImage(named: "image_placeholder")
-            self.imageView1.image = placeholderImage
-            self.imageView2.image = placeholderImage
-            
-            self.tfName.text = ""
-            self.tvDescription.text = ""
-            
-            self.navigationController?.popViewController(animated: true)
-
         }
+    }
+
+    private func placemarkInfo(_ aPlacemark: CLPlacemark) {
+        print("Placemark found: \(aPlacemark)")
+        
+        // country
+        print("country: \(String(describing: aPlacemark.country))\n")
+        
+        // megye
+        print("administrativeArea: \(String(describing: aPlacemark.administrativeArea))\n")
+        
+        // ZIP code
+        print("postalCode: \(String(describing: aPlacemark.postalCode))\n")
+        
+        // city/town
+        print("locality: \(String(describing: aPlacemark.locality))\n")
+        
+        // street
+        print("thoroughfare: \(String(describing: aPlacemark.thoroughfare))\n")
+        
+        // street number
+        print("subThoroughfare: \(String(describing: aPlacemark.subThoroughfare))\n")
     }
 }
