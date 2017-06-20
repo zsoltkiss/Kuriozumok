@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxAlamofire
+import SnapKit
 
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
@@ -39,7 +40,6 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var tfAuthorName: UITextField!
     @IBOutlet weak var tvComment: UITextView!
-    
     @IBOutlet weak var lbName: UILabel!
 
     var nameCardId: Int!
@@ -49,31 +49,47 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
     
     fileprivate var textViewShouldBeCleared = true
     
+    private weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.hidesWhenStopped = true
+        indicator.backgroundColor = UIColor.clear
+        self.view.addSubview(indicator)
+        
+        self.activityIndicator = indicator
+        
+        indicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
         self.tvComment.text = NSLocalizedString("We are wondering what's your opinion.", comment: "Initial text view content when adding a comment.")
-        
         self.lbName.text = self.nameCardName
-        
     }
 
     @IBAction func sendButtonTapped(_ sender: UIButton) {
         if self.validateInput() {
             if let author = self.tfAuthorName.text, let comment = self.tvComment.text, let ncId = self.nameCardId {
+                self.activityIndicator.startAnimating()
                 json(.post, REQUEST_URL_COMMENT, parameters: ["id": ncId, "author": author, "text": comment])
-                    .subscribe(onNext: {
+                    .subscribe(onNext: { [weak self] in
                         print("Response to 'add comment' request: \($0)")
                         
-                        if let nc = self.presentingViewController as? UINavigationController {
+                        self?.activityIndicator.stopAnimating()
+                        
+                        if let nc = self?.presentingViewController as? UINavigationController {
                             nc.popToRootViewController(animated: true)
                         }
                         
-                        self.dismiss(animated: true, completion: nil)
+                        self?.dismiss(animated: true, completion: nil)
                         
-                    }, onError: { error in
+                    }, onError: { [weak self] error in
                         print("ERROR in response: \(error))")
-                        self.displayServerError()
+                        self?.displayServerError()
                     })
                     .addDisposableTo(disposeBag)
             }
@@ -81,13 +97,11 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        
         if let nc = self.presentingViewController as? UINavigationController {
             let index = nc.viewControllers.count - 2
             let detailsVC = nc.viewControllers[index]
             
             nc.popToViewController(detailsVC, animated: true)
-            
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -98,7 +112,6 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
     }
 
     // MARK:  UITextViewDelegate methods
-    
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if self.textViewShouldBeCleared {
             // removing user info message fro text view
@@ -109,28 +122,34 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
         
         return true
     }
-
-    // MARK: - Private methods
     
+    // MARK: - Private methods
     fileprivate func validateInput() -> Bool {
         if self.tvComment.text.isEmpty || self.textViewShouldBeCleared {
-            
             let message = NSLocalizedString("Comment text must not be empty.", comment: "User input validation error message on alert view")
             let title = NSLocalizedString("Missing or invalid input", comment: "User input validation error title on alert view")
             KuriozumokUtil.displayAlert(message, title: title, delegate: nil)
             
             return false
-            
         }
         
         return true
     }
     
     fileprivate func displayServerError() {
+        self.activityIndicator.stopAnimating()
         let connectionError = NSLocalizedString("Sending your comment failed.", comment:"Comment sending error message on alert view")
         let title = NSLocalizedString("Error", comment:"Error message alert view title")
         
         KuriozumokUtil.displayAlert(connectionError, title: title, delegate: nil)
         
+    }
+}
+
+extension AddCommentViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return true
     }
 }

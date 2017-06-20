@@ -8,6 +8,7 @@ target 'Kuriozumok' do
   # Pods for Kuriozumok
   pod 'RxAlamofire'
   pod 'Kingfisher'
+  pod 'SnapKit'
 
   target 'KuriozumokTests' do
     inherit! :search_paths

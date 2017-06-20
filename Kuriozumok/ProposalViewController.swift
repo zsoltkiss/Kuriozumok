@@ -370,7 +370,6 @@ class ProposalViewController: UIViewController, CLLocationManagerDelegate, UITex
             if let latitude = params["latitude"] as? String, let latitudeData = latitude.data(using: String.Encoding.utf8) {
                 multipartFormData.append(latitudeData, withName: "latitude")
                 print("LATITUDE added to multipart form data: \(latitude)")
-
             }
             
             if let longitude = params["longitude"] as? String, let longitudeData = longitude.data(using: String.Encoding.utf8) {
