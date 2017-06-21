@@ -8,11 +8,11 @@
 
 import UIKit
 import CoreLocation
+import IQKeyboardManagerSwift
 
 let APP_COLOR_BLUE = UIColor(red: 141.0/255.0, green: 183.0/255.0, blue: 233.0/255.0, alpha: 1.0)
 let APP_COLOR_DARK_BLUE = UIColor(red: 30.0/255.0, green: 46.0/255.0, blue: 67.0/255.0, alpha: 1.0)
 
-//let BASE_URL = "http://kuriozumok.petercsontos.net"
 let BASE_URL = "https://kuriozumok.hu"
 let REQUEST_URL_CITIES = BASE_URL + "/api/towns.json"
 let REQUEST_URL_CATEGORIES = BASE_URL + "/api/categories.json"
@@ -24,22 +24,18 @@ let REQUEST_URL_COMMENT = BASE_URL + "/api/comment"
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
     var deviceLocation: CLLocation?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
         let navigationBarAppearace = UINavigationBar.appearance()
-        
         navigationBarAppearace.tintColor = UIColor.white
         navigationBarAppearace.barTintColor = APP_COLOR_BLUE
         
-        
         // change navigation item title color
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-
         
+        IQKeyboardManager.sharedManager().enable = true
+
         return true
     }
 
@@ -64,7 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

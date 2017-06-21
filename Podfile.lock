@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.4.0)
+  - IQKeyboardManagerSwift (4.0.10)
   - Kingfisher (3.10.1)
   - RxAlamofire (3.0.2):
     - RxAlamofire/Core (= 3.0.2)
@@ -10,17 +11,19 @@ PODS:
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
   - Kingfisher
   - RxAlamofire
   - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   Kingfisher: 33a1b82140fcb14a9fc13f78dfde2a03ff8de8cb
   RxAlamofire: bc53604b29fd2d220cfaa490c736cc4500819f34
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 1bf5d8b8121939eb89855acbbdd5c5bd0572cf39
+PODFILE CHECKSUM: fc9be411ad7bbcab4356de2596609a9af936c44c
 
 COCOAPODS: 1.2.1

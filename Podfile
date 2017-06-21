@@ -9,6 +9,7 @@ target 'Kuriozumok' do
   pod 'RxAlamofire'
   pod 'Kingfisher'
   pod 'SnapKit'
+  pod 'IQKeyboardManagerSwift'
 
   target 'KuriozumokTests' do
     inherit! :search_paths
