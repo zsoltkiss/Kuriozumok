@@ -50,9 +50,7 @@ class NameCard: NSObject, MKAnnotation {
     init(dictionary: Dictionary<String, AnyObject>) {
         
         if let categoryDic = dictionary["category"] as? Dictionary<String, AnyObject> {
-            
-            self.category = Category(dictionary: categoryDic)
-            
+            self.category = Category.instance(from: categoryDic, level: 0)
         }
         
         if let commentsArray = dictionary["comments"] as? Array<Dictionary<String, AnyObject>> {

@@ -1008,6 +1008,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLu-Zm-bLY">
+                                <rect key="frame" x="16" y="403" width="343" height="152"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1025,9 +1029,13 @@
                             <constraint firstItem="buW-n3-gSc" firstAttribute="leading" secondItem="cVx-RD-kSt" secondAttribute="leadingMargin" constant="10" id="WRz-Ej-Sgo"/>
                             <constraint firstItem="a4H-kg-iLH" firstAttribute="top" secondItem="K9F-m4-OLp" secondAttribute="bottom" constant="50" id="ZNq-C6-Bnq"/>
                             <constraint firstItem="lYG-Mz-7tM" firstAttribute="leading" secondItem="cVx-RD-kSt" secondAttribute="leadingMargin" constant="10" id="a3Y-Fg-OxZ"/>
+                            <constraint firstItem="6nC-6s-pUm" firstAttribute="top" secondItem="xLu-Zm-bLY" secondAttribute="bottom" constant="32" id="adK-X2-EBo"/>
                             <constraint firstItem="CP8-su-1Rn" firstAttribute="top" secondItem="R0U-4A-jue" secondAttribute="bottom" constant="10" id="lDN-Sh-ij1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6nC-6s-pUm" secondAttribute="trailing" constant="10" id="mBs-Ya-pOY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xLu-Zm-bLY" secondAttribute="trailing" id="mbu-Cy-Xz3"/>
+                            <constraint firstItem="xLu-Zm-bLY" firstAttribute="leading" secondItem="cVx-RD-kSt" secondAttribute="leadingMargin" id="mfm-Sk-Vdm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CP8-su-1Rn" secondAttribute="trailing" constant="10" id="xEF-1N-pKI"/>
+                            <constraint firstItem="xLu-Zm-bLY" firstAttribute="top" secondItem="lYG-Mz-7tM" secondAttribute="bottom" constant="20" id="xf6-lq-ICB"/>
                             <constraint firstItem="K9F-m4-OLp" firstAttribute="width" secondItem="cVx-RD-kSt" secondAttribute="width" multiplier="0.4" id="zpi-iM-gP4"/>
                         </constraints>
                     </view>
@@ -1035,6 +1043,7 @@
                         <outlet property="lbName" destination="CP8-su-1Rn" id="iRv-GW-yHh"/>
                         <outlet property="tfAuthorName" destination="lYG-Mz-7tM" id="Ojb-M5-4KO"/>
                         <outlet property="tvComment" destination="buW-n3-gSc" id="YUV-fw-xcU"/>
+                        <outlet property="webView" destination="xLu-Zm-bLY" id="j7j-Lc-hu7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCk-3G-dnK" userLabel="First Responder" sceneMemberID="firstResponder"/>

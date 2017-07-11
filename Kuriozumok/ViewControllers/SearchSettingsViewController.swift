@@ -21,7 +21,9 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
     fileprivate var cityWasSelected: Bool = false
     fileprivate var nameOfSelectedCity: String?
     
-    fileprivate var categories = Array<Category>()
+//    fileprivate var categories = Array<Category>()
+    
+    fileprivate var flatCategories = [Category]()
     
     fileprivate var locationManager: CLLocationManager!
     fileprivate var geocoder: CLGeocoder!
@@ -49,6 +51,9 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.requestWhenInUseAuthorization()
         
+        let cellNib = UINib(nibName: "CategoryCell", bundle: nil)
+        self.tvCategories.register(cellNib, forCellReuseIdentifier: "CategorySelectorCell")
+        
         self.fetchCategories()
     }
     
@@ -58,45 +63,62 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.categories.count
+        return self.flatCategories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var currentCell: UITableViewCell!
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectorCell") {
-            currentCell = cell
-        } else {
-            currentCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "CategorySelectorCell")
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectorCell") as! CategoryCell
+            
         
-        let aCat = self.categories[indexPath.row]
-        currentCell.textLabel?.text = aCat.title
-        currentCell.textLabel?.textColor = UIColor.white
-        currentCell.backgroundColor = KuriozumokUtil.applicationColors()[2]
+        let aCat = self.flatCategories[indexPath.row]
+//        currentCell.textLabel?.text = aCat.title
+//        currentCell.textLabel?.textColor = UIColor.white
+//        currentCell.backgroundColor = KuriozumokUtil.applicationColors()[2]
         
-        return currentCell
+        cell.update(with: aCat)
+        
+        return cell
     }
     
     // MARK: - UITableViewDelegate protocol
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let aCat = self.categories[indexPath.row]
-        aCat.selected = true
+        let aCat = self.flatCategories[indexPath.row]
         
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell!.accessoryType = UITableViewCellAccessoryType.checkmark
+        let newState = !aCat.isSelected
         
-        selectedCell?.selectionStyle = UITableViewCellSelectionStyle.none
+        aCat.isSelected = newState
+        
+        if let realChildren = aCat.children {
+            for child in realChildren {
+                child.isSelected = newState
+            }
+        }
+        
+//        let selectedCell = tableView.cellForRow(at: indexPath)
+//        selectedCell!.accessoryType = UITableViewCellAccessoryType.checkmark
+//        
+//        selectedCell?.selectionStyle = UITableViewCellSelectionStyle.none
+        
+        self.tvCategories.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let aCat = self.categories[indexPath.row]
-        aCat.selected = false
-        
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell!.accessoryType = UITableViewCellAccessoryType.none
-
-    }
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        let aCat = self.flatCategories[indexPath.row]
+//        aCat.isSelected = false
+//        
+//        if let realChildren = aCat.children {
+//            for child in realChildren {
+//                child.isSelected = false
+//            }
+//        }
+//        
+////        let selectedCell = tableView.cellForRow(at: indexPath)
+////        selectedCell!.accessoryType = UITableViewCellAccessoryType.none
+//        
+//        self.tvCategories.reloadData()
+//
+//    }
     
     // MARK: - Public methods
     func userDidPickACity(_ selectedCity: String) {
@@ -227,15 +249,21 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             .subscribe(onNext: { [weak self] in
                 print("Categories fetched with RxAlamofire: \($0)")
                 
-                self?.categories = []
+                var tmpCats = [Category]()
                 
                 if let arrayOfCategories = $0 as? [Dictionary<String, AnyObject>] {
                     for rawData in arrayOfCategories {
-                        if let aCat = Category(dictionary: rawData) {
-                            self?.categories.append(aCat)
+                        if let aCat = Category.instance(from: rawData, level: 0) {
+                            tmpCats.append(aCat)
                         }
                     }
                 }
+                
+                print("Category hierarchy: \(tmpCats)")
+                self?.flatCategories = []
+                
+                self?.flattenCategories(catArray: tmpCats)
+                
                 
                 self?.tvCategories.reloadData()
                 
@@ -280,18 +308,27 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
         queryString += "&distance=\(distance)"
         queryParams["distance"] = "\(distance)"
         
-        for aCategory in self.categories {
-            if aCategory.selected {
+        for aCategory in self.flatCategories {
+            if aCategory.isSelected {
                 let part = "&ids[]=\(aCategory.categoryId!)"
                 
                 queryString += part
             }
         }
         
-        let selectedCategoryIds = self.categories.filter { $0.selected }
+        let selectedCategoryIds = self.flatCategories.filter { $0.isSelected }
             .flatMap { $0.categoryId }
         queryParams["ids"] = selectedCategoryIds
         
         return (queryString, queryParams)
+    }
+    
+    private func flattenCategories(catArray: [Category]) {
+        for aCat in catArray {
+            flatCategories.append(aCat)
+            if let realChildren = aCat.children {
+                flattenCategories(catArray: realChildren)
+            }
+        }
     }
 }

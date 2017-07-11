@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1048CD502A599514F0CC9B34 /* Pods_Kuriozumok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFEDCB863FCECB06A0C83B1 /* Pods_Kuriozumok.framework */; };
 		A85834A1B90DEC12927F4D26 /* Pods_KuriozumokTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D663ABF78E3ABAFFD23E9D /* Pods_KuriozumokTests.framework */; };
+		D70A6EAE1F14A95A00BEB176 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70A6EAD1F14A95A00BEB176 /* CategoryCell.xib */; };
+		D70A6EB01F14A9B400BEB176 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A6EAF1F14A9B400BEB176 /* CategoryCell.swift */; };
 		D760C8C51C3EC09900FA50AB /* NameCardPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760C8C41C3EC09900FA50AB /* NameCardPinAnnotationView.swift */; };
 		D760C8CD1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760C8CC1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift */; };
 		D78200111C45482300596A3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D782000F1C45482300596A3D /* Localizable.strings */; };
@@ -75,6 +77,8 @@
 		72C1C76DA066D9129E27B70D /* Pods-Kuriozumok.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuriozumok.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kuriozumok/Pods-Kuriozumok.debug.xcconfig"; sourceTree = "<group>"; };
 		81CDCBEF3A8DB1D2D110FC16 /* Pods-KuriozumokUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KuriozumokUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KuriozumokUITests/Pods-KuriozumokUITests.release.xcconfig"; sourceTree = "<group>"; };
 		993C9D34E65C344D75140113 /* Pods-Kuriozumok.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kuriozumok.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kuriozumok/Pods-Kuriozumok.release.xcconfig"; sourceTree = "<group>"; };
+		D70A6EAD1F14A95A00BEB176 /* CategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		D70A6EAF1F14A9B400BEB176 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		D760C8C41C3EC09900FA50AB /* NameCardPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameCardPinAnnotationView.swift; path = CustomViews/NameCardPinAnnotationView.swift; sourceTree = "<group>"; };
 		D760C8CC1C3EC38F00FA50AB /* SearchResultOnMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultOnMapViewController.swift; path = ViewControllers/SearchResultOnMapViewController.swift; sourceTree = "<group>"; };
 		D782000E1C4541E900596A3D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Main.strings; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 			children = (
 				D7D993DD1C045E2800DF5F9A /* SearchResultCell.swift */,
 				D7E319BC1C1EE580006D7096 /* CommentCell.swift */,
+				D70A6EAD1F14A95A00BEB176 /* CategoryCell.xib */,
+				D70A6EAF1F14A9B400BEB176 /* CategoryCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D78200111C45482300596A3D /* Localizable.strings in Resources */,
+				D70A6EAE1F14A95A00BEB176 /* CategoryCell.xib in Resources */,
 				D79AB1461BFF2ABC003C5B2B /* LaunchScreen.storyboard in Resources */,
 				D7D993E71C047BF000DF5F9A /* SearchResultsTableHeader.xib in Resources */,
 				D79AB1431BFF2ABC003C5B2B /* Assets.xcassets in Resources */,
@@ -563,6 +570,7 @@
 				D79AB13C1BFF2ABC003C5B2B /* AppDelegate.swift in Sources */,
 				D760C8C51C3EC09900FA50AB /* NameCardPinAnnotationView.swift in Sources */,
 				D7D993E01C045F1200DF5F9A /* NameCard.swift in Sources */,
+				D70A6EB01F14A9B400BEB176 /* CategoryCell.swift in Sources */,
 				D79AB1761BFF6421003C5B2B /* KuriozumokUtil.swift in Sources */,
 				D7D993E21C045FE900DF5F9A /* Comment.swift in Sources */,
 				D7E319BB1C1EE448006D7096 /* CommentListTableViewController.swift in Sources */,
