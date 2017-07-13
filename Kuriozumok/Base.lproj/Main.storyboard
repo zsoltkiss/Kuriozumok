@@ -200,9 +200,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="WTa-0I-eGM">
-                                <rect key="frame" x="-4" y="117" width="383" height="346"/>
+                                <rect key="frame" x="0.0" y="117" width="375" height="346"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="PUd-Ok-1Qm"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ReU-Ou-1e3"/>
@@ -211,9 +212,9 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kBR-AH-kmu">
                                 <rect key="frame" x="26" y="483" width="323" height="29"/>
                                 <segments>
-                                    <segment title="1 km"/>
-                                    <segment title="3 km"/>
                                     <segment title="5 km"/>
+                                    <segment title="20 km"/>
+                                    <segment title="20+ km"/>
                                 </segments>
                                 <color key="tintColor" red="0.55294117649999996" green="0.71764705880000002" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
@@ -278,7 +279,7 @@
                             <constraint firstItem="WTa-0I-eGM" firstAttribute="top" secondItem="b8l-Jw-bk9" secondAttribute="bottom" constant="40" id="BqL-8n-1de"/>
                             <constraint firstAttribute="trailingMargin" secondItem="55n-rQ-Rtf" secondAttribute="trailing" constant="10" id="Cha-Z2-chA"/>
                             <constraint firstItem="vNW-GU-aaX" firstAttribute="top" secondItem="kBR-AH-kmu" secondAttribute="bottom" constant="40" id="Dzr-kN-m4P"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="WTa-0I-eGM" secondAttribute="trailing" constant="-20" id="E5l-9z-RXe"/>
+                            <constraint firstAttribute="trailing" secondItem="WTa-0I-eGM" secondAttribute="trailing" id="E5l-9z-RXe"/>
                             <constraint firstItem="b8l-Jw-bk9" firstAttribute="top" secondItem="yTO-mi-LRG" secondAttribute="bottom" constant="20" id="Izb-1Q-47U"/>
                             <constraint firstAttribute="trailingMargin" secondItem="b8l-Jw-bk9" secondAttribute="trailing" constant="10" id="TAG-xQ-nMc"/>
                             <constraint firstItem="BC5-uk-TWU" firstAttribute="centerY" secondItem="yTO-mi-LRG" secondAttribute="centerY" id="UwK-5v-xFP"/>
@@ -288,7 +289,7 @@
                             <constraint firstItem="kBR-AH-kmu" firstAttribute="top" secondItem="WTa-0I-eGM" secondAttribute="bottom" constant="20" id="iZr-xc-MZt"/>
                             <constraint firstItem="b8l-Jw-bk9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="iqq-f2-twD"/>
                             <constraint firstItem="yTO-mi-LRG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="jjY-cC-nhX"/>
-                            <constraint firstItem="WTa-0I-eGM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="lOL-53-04x"/>
+                            <constraint firstItem="WTa-0I-eGM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lOL-53-04x"/>
                             <constraint firstItem="vNW-GU-aaX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="mls-uG-Kwy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vNW-GU-aaX" secondAttribute="trailing" constant="10" id="oPw-QP-HIo"/>
                             <constraint firstItem="yTO-mi-LRG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="q6a-Ug-fKp"/>
@@ -572,9 +573,8 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nod-6J-Uq4">
-                                <rect key="frame" x="31" y="395" width="318" height="60"/>
+                                <rect key="frame" x="31" y="395" width="318" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="J9Q-UR-dEL"/>
                                     <constraint firstAttribute="width" constant="80" id="YSq-aG-hu6"/>
                                     <constraint firstAttribute="width" constant="100" id="max-vz-Qbi"/>
                                 </constraints>
@@ -1008,10 +1008,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLu-Zm-bLY">
-                                <rect key="frame" x="16" y="403" width="343" height="152"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1029,13 +1025,9 @@
                             <constraint firstItem="buW-n3-gSc" firstAttribute="leading" secondItem="cVx-RD-kSt" secondAttribute="leadingMargin" constant="10" id="WRz-Ej-Sgo"/>
                             <constraint firstItem="a4H-kg-iLH" firstAttribute="top" secondItem="K9F-m4-OLp" secondAttribute="bottom" constant="50" id="ZNq-C6-Bnq"/>
                             <constraint firstItem="lYG-Mz-7tM" firstAttribute="leading" secondItem="cVx-RD-kSt" secondAttribute="leadingMargin" constant="10" id="a3Y-Fg-OxZ"/>
-                            <constraint firstItem="6nC-6s-pUm" firstAttribute="top" secondItem="xLu-Zm-bLY" secondAttribute="bottom" constant="32" id="adK-X2-EBo"/>
                             <constraint firstItem="CP8-su-1Rn" firstAttribute="top" secondItem="R0U-4A-jue" secondAttribute="bottom" constant="10" id="lDN-Sh-ij1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6nC-6s-pUm" secondAttribute="trailing" constant="10" id="mBs-Ya-pOY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xLu-Zm-bLY" secondAttribute="trailing" id="mbu-Cy-Xz3"/>
-                            <constraint firstItem="xLu-Zm-bLY" firstAttribute="leading" secondItem="cVx-RD-kSt" secondAttribute="leadingMargin" id="mfm-Sk-Vdm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CP8-su-1Rn" secondAttribute="trailing" constant="10" id="xEF-1N-pKI"/>
-                            <constraint firstItem="xLu-Zm-bLY" firstAttribute="top" secondItem="lYG-Mz-7tM" secondAttribute="bottom" constant="20" id="xf6-lq-ICB"/>
                             <constraint firstItem="K9F-m4-OLp" firstAttribute="width" secondItem="cVx-RD-kSt" secondAttribute="width" multiplier="0.4" id="zpi-iM-gP4"/>
                         </constraints>
                     </view>
@@ -1043,7 +1035,6 @@
                         <outlet property="lbName" destination="CP8-su-1Rn" id="iRv-GW-yHh"/>
                         <outlet property="tfAuthorName" destination="lYG-Mz-7tM" id="Ojb-M5-4KO"/>
                         <outlet property="tvComment" destination="buW-n3-gSc" id="YUV-fw-xcU"/>
-                        <outlet property="webView" destination="xLu-Zm-bLY" id="j7j-Lc-hu7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCk-3G-dnK" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -41,7 +41,6 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tfAuthorName: UITextField!
     @IBOutlet weak var tvComment: UITextView!
     @IBOutlet weak var lbName: UILabel!
-    @IBOutlet weak var webView: UIWebView!
 
     var nameCardId: Int!
     var nameCardName: String!
@@ -70,11 +69,6 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
         
         self.tvComment.text = NSLocalizedString("We are wondering what's your opinion.", comment: "Initial text view content when adding a comment.")
         self.lbName.text = self.nameCardName
-        
-        
-        //https://www.youtube.com/watch?v=7lLrj3vcveQ
-        
-        loadYoutube(videoID: "7lLrj3vcveQ")
     }
 
     @IBAction func sendButtonTapped(_ sender: UIButton) {
@@ -149,14 +143,6 @@ class AddCommentViewController: UIViewController, UITextViewDelegate {
         
         KuriozumokUtil.displayAlert(connectionError, title: title, delegate: nil)
         
-    }
-    
-    
-    private func loadYoutube(videoID:String) {
-        guard
-            let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)")
-            else { return }
-        webView.loadRequest( URLRequest(url: youtubeURL) )
     }
 }
 

@@ -21,8 +21,6 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
     fileprivate var cityWasSelected: Bool = false
     fileprivate var nameOfSelectedCity: String?
     
-//    fileprivate var categories = Array<Category>()
-    
     fileprivate var flatCategories = [Category]()
     
     fileprivate var locationManager: CLLocationManager!
@@ -54,6 +52,10 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
         let cellNib = UINib(nibName: "CategoryCell", bundle: nil)
         self.tvCategories.register(cellNib, forCellReuseIdentifier: "CategorySelectorCell")
         
+        for (idx, title) in ["5 km", "20 km", "20+ km"].enumerated() {
+            scDistanceOptions.setTitle(title, forSegmentAt: idx)
+        }
+        
         self.fetchCategories()
     }
     
@@ -67,17 +69,9 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategorySelectorCell") as! CategoryCell
-            
-        
         let aCat = self.flatCategories[indexPath.row]
-//        currentCell.textLabel?.text = aCat.title
-//        currentCell.textLabel?.textColor = UIColor.white
-//        currentCell.backgroundColor = KuriozumokUtil.applicationColors()[2]
-        
         cell.update(with: aCat)
-        
         return cell
     }
     
@@ -95,30 +89,8 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
         
-//        let selectedCell = tableView.cellForRow(at: indexPath)
-//        selectedCell!.accessoryType = UITableViewCellAccessoryType.checkmark
-//        
-//        selectedCell?.selectionStyle = UITableViewCellSelectionStyle.none
-        
         self.tvCategories.reloadData()
     }
-    
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let aCat = self.flatCategories[indexPath.row]
-//        aCat.isSelected = false
-//        
-//        if let realChildren = aCat.children {
-//            for child in realChildren {
-//                child.isSelected = false
-//            }
-//        }
-//        
-////        let selectedCell = tableView.cellForRow(at: indexPath)
-////        selectedCell!.accessoryType = UITableViewCellAccessoryType.none
-//        
-//        self.tvCategories.reloadData()
-//
-//    }
     
     // MARK: - Public methods
     func userDidPickACity(_ selectedCity: String) {
@@ -297,12 +269,12 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             queryParams["longitude"] = "\(deviceLocation!.coordinate.longitude)"
         }
         
-        var distance = 1
+        var distance = 5
         
         if self.scDistanceOptions.selectedSegmentIndex == 1 {
-            distance = 3;
+            distance = 20;
         } else if self.scDistanceOptions.selectedSegmentIndex == 2 {
-            distance = 5;
+            distance = 1000;
         }
         
         queryString += "&distance=\(distance)"
@@ -316,7 +288,7 @@ class SearchSettingsViewController: UIViewController, UITableViewDataSource, UIT
             }
         }
         
-        let selectedCategoryIds = self.flatCategories.filter { $0.isSelected }
+        let selectedCategoryIds = self.flatCategories.filter { $0.isSelected && ($0.children == nil || $0.children?.count == 0) }
             .flatMap { $0.categoryId }
         queryParams["ids"] = selectedCategoryIds
         

@@ -19,15 +19,30 @@ class Category: NSObject {
     
     var isSelected: Bool = false {
         didSet {
-            if let myParent = self.parent {
-                if self.isSelected {
-                    myParent.childSelected(self)
-                } else {
-                    myParent.childDeselected(self)
+            
+            if shouldStatePropagate {
+                if let realChildren = children {
+                    for aChild in realChildren {
+                        aChild.isSelected = self.isSelected
+                    }
                 }
+            }
+            
+            if let myParent = self.parent {
+                if !self.isSelected {
+                    myParent.childDeselected(self)
+                } else {
+                    myParent.checkChildrenState()
+                }
+            }
+            
+            if !shouldStatePropagate {
+                shouldStatePropagate = true
             }
         }
     }
+    
+    private var shouldStatePropagate = true
     
     override var description: String {
         var strChildren = ""
@@ -45,11 +60,8 @@ class Category: NSObject {
         return "\(title) [\(strChildren)]"
     }
     
-    private func childSelected(_ someChild: Category) {
-        checkChildrenState()
-    }
-    
     private func childDeselected(_ someChild: Category) {
+        self.shouldStatePropagate = false
         self.isSelected = false
     }
     
@@ -57,15 +69,11 @@ class Category: NSObject {
         tempContainer = [Category]()
         Category.fetchAllChildren(for: self)
         let filteredArray = tempContainer.filter { $0.isSelected == false }
-        self.isSelected = filteredArray.count == 0
         
+        if filteredArray.count == 0 {
+            self.isSelected = true
+        }
         
-        
-//        if let realChildren = self.children {
-//            let array = realChildren.filter { $0.isSelected == false }
-//            
-//            self.isSelected = array.count == 0
-//        }
     }
     
     static func fetchAllChildren(for category: Category) {
